@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABot-N0: VLA Foundation Model for Versatile Embodied Navigation</title>
+    <title>ABot-N1: VLA Navigation Model</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -2093,11 +2093,11 @@
     </ul>
     <div class="nav-buttons">
         <div class="model-switcher">
-            <span class="model-switch-btn active">N0</span>
+            <a href="../ABot-N0/index.html" class="model-switch-btn">N0</a>
             <span class="model-switch-divider">|</span>
-            <a href="../ABot-N1/index.html" class="model-switch-btn">N1</a>
+            <span class="model-switch-btn active">N1</span>
         </div>
-        <div class="nav-logo">ABot-N0</div>
+        <div class="nav-logo">ABot-N1</div>
     </div>
 </nav>
 
@@ -2110,51 +2110,50 @@
         Technical Report
     </div>
     <h1>
-        <span class="model-name">ABot-N0</span>
+        <span class="model-name">ABot-N1</span>
     </h1>
     <p class="hero-subtitle">
-        A Unified VLA Foundation Model for Versatile Embodied Navigation — Achieving Grand Unification Across 5 Core Tasks with a Hierarchical Brain-Action Architecture
+        The next-generation navigation model in the ABot series. Technical report and benchmark results coming soon.
     </p>
 
     <div class="hero-stats">
         <div class="hero-stat">
-            <div class="number" data-target="5">0</div>
-            <div class="label">Unified Tasks</div>
+            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="label">Core Tasks</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="7" data-suffix="">0</div>
-            <div class="label">SOTA Benchmarks</div>
+            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="label">Benchmarks</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="16.9" data-suffix="M">0</div>
+            <div class="number" data-target="1" data-suffix="+">0</div>
             <div class="label">Expert Trajectories</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="7802">0</div>
+            <div class="number" data-target="1" data-suffix="+">0</div>
             <div class="label">3D Scenes</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="5.0" data-suffix="M">0</div>
+            <div class="number" data-target="1" data-suffix="+">0</div>
             <div class="label">Reasoning Samples</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="10.7">0</div>
-            <div class="label">km² Coverage</div>
+            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="label">Coverage</div>
         </div>
     </div>
 
     <div class="hero-actions">
-        <a href="https://arxiv.org/pdf/2602.11598" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
-        <a href="https://github.com/amap-cvlab/ABot-Navigation/tree/ABot-N0" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#citation" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Paper (Coming Soon)</a>
+        <a href="https://github.com/amap-cvlab/ABot-Navigation" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
         <a href="#video-demos" class="btn btn-secondary"><i class="fas fa-play-circle"></i> Watch Demos</a>
     </div>
 
     <div class="hero-video-wrapper">
         <video id="intro-video" src="static/videos/intro.mp4" muted autoplay playsinline loop></video>
     </div>
-
     <div class="hero-image-wrapper">
-        <img src="static/images/overview.jpg" alt="ABot-N0 Overview" loading="lazy">
+        <img src="static/images/overview.png" alt="ABot-N1 Overview" loading="lazy">
     </div>
 </section>
 
@@ -2167,15 +2166,15 @@
     <div class="section-inner reveal">
         <div class="section-header">
             <div class="section-tag"><i class="fas fa-scroll"></i> Abstract</div>
-            <h2 class="section-title">Grand Unification of Embodied Navigation</h2>
+            <h2 class="section-title">ABot-N1 Overview</h2>
         </div>
 
         <p class="abstract-text">
-            Embodied navigation has long been fragmented by task-specific architectures. We introduce <strong>ABot-N0</strong>, a unified Vision-Language-Action (VLA) foundation model that achieves a "Grand Unification" across <strong>5 core tasks</strong>: Point-Goal, Object-Goal, Instruction-Following, POI-Goal, and Person-Following. ABot-N0 utilizes a hierarchical "Brain-Action" architecture, pairing an LLM-based <strong>Cognitive Brain</strong> for semantic reasoning with a Flow Matching-based <strong>Action Expert</strong> for precise, continuous trajectory generation.
+            <strong>ABot-N1</strong> advances the ABot series by addressing the limitations of monolithic navigation policies—such as coordinate drift and lack of interpretability. We introduce a novel <strong>Fast-Slow Architecture</strong> that factorizes cognition from control, combining deep visual-language reasoning with high-frequency action execution.
         </p>
         <br>
         <p class="abstract-text">
-            To support large-scale learning, we developed the <strong>ABot-N0 Data Engine</strong>, curating <strong>16.9M</strong> expert trajectories and <strong>5.0M</strong> reasoning samples across <strong>7,802</strong> high-fidelity 3D scenes (<strong>10.7 km²</strong>). ABot-N0 achieves new <strong>SOTA</strong> performance across <strong>7 benchmarks</strong>, significantly outperforming specialized models. Furthermore, our Agentic Navigation System integrates a planner with hierarchical topological memory, enabling robust, long-horizon missions in dynamic real-world environments.
+            Unlike its predecessor, ABot-N1 employs a <strong>Slow Vision-Language Reasoner</strong> to perform explicit Chain-of-Thought (CoT) reasoning and emit universal Pixel Goals. These image-space anchor points are then consumed by a <strong>Fast Action Expert</strong> to generate continuous waypoints. This design re-ground the goal at every step, offering superior robustness, open-vocabulary generalization, and human-readable decision logs across simulation and real-world deployments.
         </p>
 
         <!-- 5 Tasks -->
@@ -2218,34 +2217,34 @@
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-brain"></i> Model Architecture</div>
-            <h2 class="section-title">Hierarchical Brain-Action Design</h2>
-            <p class="section-desc">A unified VLA architecture that combines high-level cognitive reasoning with low-level motion planning, seamlessly generalizing across five core navigation tasks.</p>
+            <h2 class="section-title">Hierarchical Fast-Slow Architecture</h2>
+            <p class="section-desc">We introduce a novel Architecture that factorizes cognition from control, combining deep visual-language reasoning with high-frequency action execution.</p>
         </div>
 
         <div class="arch-content reveal">
             <div class="figure-block">
-                <img src="static/images/robonavi_architecture.jpg" alt="ABot-N0 Architecture">
+                <img src="static/images/model.png" alt="ABot-N1 Architecture">
                 <div class="fig-caption">
-                    <strong>The Architecture of ABot-N0.</strong> The model adopts a hierarchical "Brain-Action" design. The Universal Multi-Modal Encoder unifies heterogeneous inputs (RGB observations, visual history, and goal specifications) into a shared token sequence. The Cognitive Brain (LLM) supports dual-mode operation: a Reasoning Head for semantic understanding and an Action Head for motion planning. The Action Expert employs Flow Matching to generate trajectory distributions.
+                    <strong>The fast--slow dual-system architecture of ABot-N1</strong>. Navigation is decoupled into asynchronous cognition and high-frequency control.<strong>Slow System (left):</strong> A vision-language reasoner processes historical frames and task prompts at low frequency, producing explicit Chain-of-Thought (CoT) reasoning and visual anchors (Target Pixel and Affordance Pixel).<strong>Dual Vision-Language Interface (middle):</strong> The language and visual outputs form a unified bridge between the two systems.<strong>Fast System (right):</strong> A lightweight-VLM-based action expert integrates the dual guidance with real-time observations; a learnable action query attends the output hidden states via a QFormer module, and an MLP decodes the queries to predict continuous waypoints. The system is trained with pretraining and GRPO, enabling complex reasoning without blocking the reactive control loop.
                 </div>
             </div>
         </div>
 
         <div class="pillars-grid reveal">
             <div class="pillar-card">
-                <div class="pillar-icon">🔍</div>
-                <h3>Universal Multi-Modal Encoder</h3>
-                <p>Unifies heterogeneous inputs — panoramic RGB, episodic visual memory, text goals, and geometric coordinates — into a shared latent space through flexible token-based encoding.</p>
-            </div>
-            <div class="pillar-card">
                 <div class="pillar-icon">🧠</div>
-                <h3>Cognitive Brain</h3>
-                <p>Built on Qwen3-4B LLM backbone. Features task-conditional dual heads: a Reasoning Head for scene analysis and spatial reasoning, and an Action Head for navigation decisions.</p>
+                <h3>Deliberative Reasoner</h3>
+                <p>The slow system leverages the Qwen-3.5-4B-VL model to perform explicit Chain-of-Thought reasoning over multi-view observations and historical memory. It outputs interpretable natural language traces alongside universal pixel goals to ground abstract intent in image space.</p>
             </div>
             <div class="pillar-card">
                 <div class="pillar-icon">⚡</div>
                 <h3>Action Expert</h3>
-                <p>Employs Flow Matching to generate precise, multi-modal trajectory distributions — 5 waypoints with position (x,y) and heading (θ) for continuous robot control.</p>
+                <p>The fast system employs Qwen-3.5-2B as its backbone to jointly encode real-time observations with the slow system's reasoning traces and pixel goals. It distills these multimodal features into a sequence of continuous, adaptive SE(2) waypoints for precise and reactive control.</p>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-icon">⏰</div>
+                <h3>Asynchronous Inference</h3>
+                <p>The slow and fast systems operate asynchronously, decoupling deep reasoning from high-frequency control. The fast system tracks cached pixel goals to ensure smooth, responsive navigation while the slow system deliberates.</p>
             </div>
         </div>
     </div>
@@ -2260,25 +2259,25 @@
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-database"></i> Data Engine</div>
-            <h2 class="section-title">The Largest Embodied Navigation Data Engine</h2>
-            <p class="section-desc">A unified synthesis pipeline integrating high-fidelity 3D scenes, expert trajectories, and cognitive reasoning samples at unprecedented scale.</p>
+            <h2 class="section-title">ABot-N1 Data Engine</h2>
+            <p class="section-desc">Data engine specifications, scene coverage, and trajectory scale will be detailed in the upcoming technical report.</p>
         </div>
 
         <div class="data-highlight-grid reveal">
             <div class="data-highlight">
-                <div class="number">7,802</div>
+                <div class="number">TBD</div>
                 <div class="unit">3D Scenes</div>
             </div>
             <div class="data-highlight">
-                <div class="number">10.7 km²</div>
+                <div class="number">TBD</div>
                 <div class="unit">Total Area Coverage</div>
             </div>
             <div class="data-highlight">
-                <div class="number">16.9M</div>
+                <div class="number">TBD</div>
                 <div class="unit">Expert Trajectories</div>
             </div>
             <div class="data-highlight">
-                <div class="number">5.0M</div>
+                <div class="number">TBD</div>
                 <div class="unit">Reasoning Samples</div>
             </div>
         </div>
@@ -2291,22 +2290,21 @@
                 <div class="data-pillar-header">
                     <div class="data-pillar-number">01</div>
                     <div class="data-pillar-meta">
-                        <h3>High-Fidelity 3D Scene Ecosystem</h3>
-                        <p class="data-pillar-stats"><span class="dp-stat">7,802 Scenes</span><span class="dp-divider">·</span><span class="dp-stat">10.7 km²</span><span class="dp-divider">·</span><span class="dp-stat">384,754m Nav Graphs</span></p>
+                        <h3>Pre-training Data Recipe</h3>
                     </div>
                 </div>
                 <div class="data-pillar-body">
                     <div class="figure-block" style="margin: 0;">
-                        <img src="static/images/datasource.jpg" alt="3D Scene Ecosystem & Data Sources">
+                        <img src="static/images/data.png" alt="3D Scene Ecosystem & Data Sources">
                         <div class="fig-caption">
-                            <strong>3D Scene Ecosystem & Statistics.</strong> 7,802 high-fidelity 3D scenes covering 6.25 km² indoor (homes, offices, malls, stations) and 4.42 km² outdoor (intersections, parks, SocCity) environments. All scenes are annotated with traversable navigation graphs for collision-free trajectory synthesis.
+                            <strong>Pre-training data pipeline and composition.</strong> The data engine (left) provides diverse indoor and outdoor simulation scenes; trajectory generation (middle) produces expert and Dagger rollouts; the resulting samples (right) are distributed across five navigation tasks, broken down by slow-system (high-level) and fast-system (low-level) counts.
                         </div>
                     </div>
-                    <div class="figure-block" style="margin: 1.5rem 0 0 0;">
+                    <!-- <div class="figure-block" style="margin: 1.5rem 0 0 0;">
                         <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px;">
                             <iframe src="https://www.youtube.com/embed/EonbUL-1uPo" title="High-Fidelity 3D Scene Ecosystem Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"></iframe>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -2316,7 +2314,7 @@
                     <div class="data-pillar-number">02</div>
                     <div class="data-pillar-meta">
                         <h3>Universal Trajectories Dataset</h3>
-                        <p class="data-pillar-stats"><span class="dp-stat">16.9M Trajectories</span><span class="dp-divider">·</span><span class="dp-stat">5 Navigation Tasks</span></p>
+                        <p class="data-pillar-stats"><span class="dp-stat">Trajectories TBD</span><span class="dp-divider">·</span><span class="dp-stat">Navigation Tasks TBD</span></p>
                     </div>
                 </div>
                 <div class="data-pillar-body">
@@ -2324,43 +2322,43 @@
                         <button class="traj-scroll-btn traj-scroll-left" onclick="scrollTraj(-1)" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
                         <div class="traj-scroll-container" id="trajScroll">
                             <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/pointgoal.jpg" alt="Point-Goal Data Pipeline"></div>
+                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/point_data.png" alt="Point-Goal Data Pipeline"></div>
                                 <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-cyan);">4.0M Trajectories</span>
+                                    <span class="traj-badge" style="--badge-color: var(--accent-cyan);">Coming Soon</span>
                                     <h4>Point-Goal</h4>
-                                    <p>2.0M pseudo-trajectories from internet videos, 1.7M synthetic from 3D scenes, 340K real-world robot demonstrations.</p>
+                                    <p>Details to be announced in the upcoming technical report.</p>
                                 </div>
                             </div>
                             <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/objectgoal.jpg" alt="Object-Goal"></div>
+                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/object_data.png" alt="Object-Goal"></div>
                                 <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-blue);">3.2M Trajectories</span>
+                                    <span class="traj-badge" style="--badge-color: var(--accent-blue);">Coming Soon</span>
                                     <h4>Object-Goal</h4>
-                                    <p>Semantic search and discovery of specific object categories in unseen environments.</p>
+                                    <p>Details to be announced in the upcoming technical report.</p>
                                 </div>
                             </div>
                             <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/interior_ins.jpg" alt="Instruction-Following"></div>
+                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/ins_data.png" alt="Instruction-Following"></div>
                                 <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-purple);">2.8M Trajectories</span>
+                                    <span class="traj-badge" style="--badge-color: var(--accent-purple);">Coming Soon</span>
                                     <h4>Instruction-Following</h4>
-                                    <p>VLN-CE R2R/RxR navigation, door-traversal, language-guided person search, and short-horizon atomic movement primitives.</p>
+                                    <p>Details to be announced in the upcoming technical report.</p>
                                 </div>
                             </div>
                             <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/poitraj.jpg" alt="POI-Goal"></div>
+                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/poi_data.png" alt="POI-Goal"></div>
                                 <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-pink);">2.5M Trajectories</span>
+                                    <span class="traj-badge" style="--badge-color: var(--accent-pink);">Coming Soon</span>
                                     <h4>POI-Goal</h4>
-                                    <p>Outdoor-to-indoor navigation via streetview OCR, trajectory-instruction alignment, and video generation.</p>
+                                    <p>Details to be announced in the upcoming technical report.</p>
                                 </div>
                             </div>
                             <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/tracking.jpg" alt="Person-Following"></div>
+                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/person_data.png" alt="Person-Following"></div>
                                 <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-green);">4.0M Trajectories</span>
+                                    <span class="traj-badge" style="--badge-color: var(--accent-green);">Coming Soon</span>
                                     <h4>Person-Following</h4>
-                                    <p>3 proximity configs × 3 challenge categories (STT, DT, AT), plus 400K target-absent cases.</p>
+                                    <p>Details to be announced in the upcoming technical report.</p>
                                 </div>
                             </div>
                         </div>
@@ -2369,24 +2367,26 @@
                 </div>
             </div>
 
-            <!-- Pillar 3: Reasoning Dataset -->
+            <!-- Pillar 3: Reasoning Dataset (hidden: image missing) -->
+            <!--
             <div class="data-pillar reveal">
                 <div class="data-pillar-header">
                     <div class="data-pillar-number">03</div>
                     <div class="data-pillar-meta">
                         <h3>Cognitive Reasoning Dataset</h3>
-                        <p class="data-pillar-stats"><span class="dp-stat">5.0M Samples</span><span class="dp-divider">·</span><span class="dp-stat">6 Reasoning Tasks</span></p>
+                        <p class="data-pillar-stats"><span class="dp-stat">Samples TBD</span><span class="dp-divider">·</span><span class="dp-stat">Reasoning Tasks TBD</span></p>
                     </div>
                 </div>
                 <div class="data-pillar-body">
                     <div class="figure-block" style="margin: 0;">
                         <img src="static/images/reasoning.jpg" alt="Reasoning Dataset">
                         <div class="fig-caption">
-                            <strong>Cognitive Reasoning Dataset.</strong> 5.0M samples spanning Navigable Areas Analysis (1.2M), Social Navigation CoT (0.8M), Instruction-Following Reasoning (1.3M), Object-Goal Reasoning (0.1M), POI Grounding (0.5M), and General VQA (1.1M) — grounding decision-making in explicit spatial-social logic.
+                            <strong>Cognitive Reasoning Dataset.</strong> Detailed reasoning dataset statistics for ABot-N1 will be released in the upcoming technical report.
                         </div>
                     </div>
                 </div>
             </div>
+            -->
 
         </div>
     </div>
@@ -2401,32 +2401,32 @@
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-graduation-cap"></i> Training Recipe</div>
-            <h2 class="section-title">Three-Stage Curriculum Learning</h2>
-            <p class="section-desc">A progressive training pipeline ensuring the model first understands the world before learning to act within it.</p>
+            <h2 class="section-title">Training Recipe</h2>
+            <p class="section-desc">The ABot-N1 training pipeline will be released alongside the technical report.</p>
         </div>
 
         <div class="training-timeline reveal">
             <div class="training-phase">
                 <div class="phase-number">Phase 1</div>
-                <h3>Cognitive Warm-up</h3>
-                <p>Before learning "how to move", the agent learns "what to see" and "how to reason." We freeze the Vision Encoder and fine-tune the LLM Brain using Next Token Prediction loss on diverse reasoning tasks. The Action Expert remains frozen, ensuring gradients focus purely on optimizing visual-linguistic representations.</p>
+                <h3>Pre-training</h3>
+                <p>Details of the ABot-N1 pre-training stage will be released in the upcoming technical report.</p>
             </div>
 
             <div class="training-phase">
                 <div class="phase-number">Phase 2</div>
-                <h3>Unified Sensorimotor SFT</h3>
-                <p>All five navigation tasks are unified into a single multi-task training regime. A mixed-training strategy (20% reasoning replay) prevents catastrophic forgetting. Dual-Head Optimization jointly trains the AR Head and Action Expert.</p>
+                <h3>Supervised Fine-Tuning</h3>
+                <p>Details of the ABot-N1 supervised fine-tuning stage will be released in the upcoming technical report.</p>
                 <div class="formula-box">
-                    ℒ<sub>Phase2</sub> = λ<sub>txt</sub> · ℒ<sub>NTP</sub>(θ<sub>brain</sub>) + λ<sub>flow</sub> · ℒ<sub>CFM</sub>(θ<sub>action</sub> | θ<sub>brain</sub>)
+                    ℒ<sub>SFT</sub> = TBD
                 </div>
             </div>
 
             <div class="training-phase">
                 <div class="phase-number">Phase 3</div>
-                <h3>Post-Training Value Alignment via SAFE-GRPO</h3>
-                <p>A flow-based reinforcement learning framework that explicitly enforces social compliance. The Brain is frozen while the Action Expert is fine-tuned to maximize a composite reward balancing social compliance, expert similarity, smoothness, and efficiency.</p>
+                <h3>Alignment & Refinement</h3>
+                <p>Details of the ABot-N1 alignment and refinement stage will be released in the upcoming technical report.</p>
                 <div class="formula-box">
-                    ℛ = w<sub>soc</sub> · ℛ<sub>social</sub> + w<sub>exp</sub> · ℛ<sub>expert</sub> + w<sub>sm</sub> · ℛ<sub>smooth</sub> + w<sub>eff</sub> · ℛ<sub>eff</sub>
+                    ℛ<sub>total</sub> = TBD
                 </div>
             </div>
         </div>
@@ -2442,8 +2442,8 @@
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-chart-bar"></i> Evaluation</div>
-            <h2 class="section-title">State-of-the-Art Across 7 Benchmarks</h2>
-            <p class="section-desc">Comprehensive evaluation demonstrating superior performance across all five navigation paradigms.</p>
+            <h2 class="section-title">Evaluation Results</h2>
+            <p class="section-desc">Benchmark results for ABot-N1 will be released in the upcoming technical report.</p>
         </div>
 
         <div class="benchmark-tabs reveal" id="benchmarkTabs">
@@ -2478,12 +2478,12 @@
                         <tr><td class="method-name">ViNT</td><td>16.5</td><td>31.1</td><td>15.4</td><td>12.9</td><td>14.8</td><td>13.3</td><td>11.6</td><td>12.6</td></tr>
                         <tr><td class="method-name">NoMaD</td><td>19.1</td><td>35.1</td><td>18.5</td><td>15.6</td><td>18.1</td><td>14.3</td><td>12.8</td><td>12.1</td></tr>
                         <tr><td class="method-name">CityWalker</td><td>15.2</td><td>26.6</td><td>14.1</td><td>13.9</td><td>14.3</td><td>12.0</td><td>10.4</td><td>11.5</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">11.2</td><td class="best">21.3</td><td class="best">9.8</td><td class="best">12.8</td><td class="best">8.1</td><td class="best">8.8</td><td class="best">6.3</td><td class="best">7.6</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">11.2</td><td class="best">21.3</td><td class="best">9.8</td><td class="best">12.8</td><td class="best">8.1</td><td class="best">8.8</td><td class="best">6.3</td><td class="best">7.6</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>CityWalker Benchmark (Open-Loop):</strong> MAOE metric (↓ lower is better). ABot-N0 achieves mean MAOE of <strong>11.2</strong>, significantly outperforming the previous SOTA CityWalker (15.2) — a <strong>26.3%</strong> improvement.
+                <strong>Open-loop point-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
 
@@ -2506,12 +2506,12 @@
                         <tr><td class="method-name">ViNT*</td><td>45.6</td><td>66.2</td><td>39.5</td><td>31.4</td><td>33.8</td></tr>
                         <tr><td class="method-name">NoMaD*</td><td>41.1</td><td>60.5</td><td>35.4</td><td>29.5</td><td>31.6</td></tr>
                         <tr><td class="method-name">CityWalker</td><td>47.8</td><td>64.7</td><td>44.7</td><td>36.1</td><td>36.6</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">88.3</td><td class="best">92.1</td><td class="best">79.2</td><td class="best">85.1</td><td class="best">85.4</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">88.3</td><td class="best">92.1</td><td class="best">79.2</td><td class="best">85.1</td><td class="best">85.4</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>SocNav Benchmark (Closed-Loop):</strong> ABot-N0 achieves <strong>88.3%</strong> Success Rate, nearly doubling the baseline (47.8%). Social compliance DCR reaches <strong>85.1%</strong> vs. 36.1% for the best baseline.
+                <strong>Closed-loop point-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
 
@@ -2541,12 +2541,12 @@
                         <tr><td class="method-name">Uni-NaVid</td><td>41.3</td><td>21.1</td><td>43.9</td><td>21.8</td><td>39.5</td><td>19.8</td></tr>
                         <tr><td class="method-name">MTU3D</td><td>55.0</td><td>23.6</td><td>45.0</td><td>14.7</td><td>40.8</td><td>12.1</td></tr>
                         <tr><td class="method-name">NavFoM (Four views)</td><td>40.1</td><td>27.1</td><td>45.4</td><td>32.6</td><td>45.2</td><td class="best">31.9</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">55.3</td><td class="best">32.1</td><td class="best">55.4</td><td class="best">33.2</td><td class="best">54.0</td><td style="color: var(--text-secondary); font-weight: 400;">30.5</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">55.3</td><td class="best">32.1</td><td class="best">55.4</td><td class="best">33.2</td><td class="best">54.0</td><td style="color: var(--text-secondary); font-weight: 400;">30.5</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>HM3D-OVON Benchmark:</strong> ABot-N0 surpasses MTU3D by <strong>13.2%</strong> in SR on the challenging Val-Unseen split. While MTU3D suffers a 14.2% drop from Val-Seen to Val-Unseen, ABot-N0 exhibits only <strong>1.3%</strong> decline — demonstrating exceptional open-vocabulary generalization.
+                <strong>Object-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
 
@@ -2568,12 +2568,12 @@
                         <tr><td class="method-name">StreamVLN</td><td>4.98</td><td>64.2</td><td>56.9</td><td>51.9</td></tr>
                         <tr><td class="method-name">InternVLA-N1 (S1+S2)</td><td>4.83</td><td>63.3</td><td>58.2</td><td>54.0</td></tr>
                         <tr><td class="method-name">NavFoM (Four views)</td><td>4.61</td><td class="best">72.1</td><td>61.7</td><td>55.3</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">3.78</td><td style="color: var(--text-secondary); font-weight: 400;">70.8</td><td class="best">66.4</td><td class="best">63.9</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">3.78</td><td style="color: var(--text-secondary); font-weight: 400;">70.8</td><td class="best">66.4</td><td class="best">63.9</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>VLN-CE R2R Val-Unseen:</strong> ABot-N0 achieves <strong>66.4%</strong> SR and <strong>63.9%</strong> SPL, surpassing NavFoM by 4.7% SR and 8.6% SPL — using only panoramic RGB without depth or odometry.
+                <strong>Instruction-following (R2R) results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
 
@@ -2594,12 +2594,12 @@
                         <tr><td class="method-name">StreamVLN</td><td>6.22</td><td>52.9</td><td>46.0</td></tr>
                         <tr><td class="method-name">InternVLA-N1 (S1+S2)</td><td>5.91</td><td>53.5</td><td>46.1</td></tr>
                         <tr><td class="method-name">NavFoM (Four views)</td><td>4.74</td><td>64.4</td><td>56.2</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">3.83</td><td class="best">69.3</td><td class="best">60.0</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">3.83</td><td class="best">69.3</td><td class="best">60.0</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>VLN-CE RxR Val-Unseen:</strong> ABot-N0 achieves <strong>69.3%</strong> SR and <strong>60.0%</strong> SPL, outperforming NavFoM by 4.9% SR and 3.8% SPL — demonstrating strong cross-lingual generalization.
+                <strong>Instruction-following (RxR) results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
 
@@ -2622,12 +2622,12 @@
                         <tr><td class="method-name">NoMaD</td><td>4.13</td><td>15.07</td><td>29.20</td><td>31.35</td><td>5.45</td><td>85.91</td></tr>
                         <tr><td class="method-name">CityWalker</td><td>13.79</td><td>41.02</td><td>65.96</td><td>15.58</td><td>0.76</td><td>56.47</td></tr>
                         <tr><td class="method-name">OmniNav</td><td>18.78</td><td>46.99</td><td>72.39</td><td>14.16</td><td>0.99</td><td>53.79</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">32.14</td><td class="best">71.50</td><td class="best">88.68</td><td class="best">9.84</td><td class="best">0.44</td><td class="best">51.38</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">32.14</td><td class="best">71.50</td><td class="best">88.68</td><td class="best">9.84</td><td class="best">0.44</td><td class="best">51.38</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>BridgeNav Dataset:</strong> ABot-N0 achieves <strong>70.1%</strong> improvement at the strictest 0.1m threshold and reduces average trajectory deviation by <strong>30.5%</strong>.
+                <strong>POI-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
 
@@ -2653,12 +2653,12 @@
                         <tr><td class="method-name">TrackVLA</td><td>85.1</td><td>78.6</td><td class="best">1.65</td><td>57.6</td><td>63.2</td><td>5.80</td><td>50.2</td><td>63.7</td><td>17.1</td></tr>
                         <tr><td class="method-name">NavFoM</td><td>85.0</td><td>80.5</td><td>-</td><td>61.4</td><td>68.2</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
                         <tr><td class="method-name">TrackVLA++</td><td>86.0</td><td>81.0</td><td>2.10</td><td>66.5</td><td>68.8</td><td class="best">4.71</td><td>51.2</td><td>63.4</td><td>15.9</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N0</td><td class="best">86.9</td><td class="best">87.6</td><td style="color: var(--text-secondary); font-weight: 400;">8.54</td><td class="best">66.7</td><td class="best">75.4</td><td style="color: var(--text-secondary); font-weight: 400;">11.6</td><td class="best">67.3</td><td class="best">79.5</td><td class="best">7.05</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">86.9</td><td class="best">87.6</td><td style="color: var(--text-secondary); font-weight: 400;">8.54</td><td class="best">66.7</td><td class="best">75.4</td><td style="color: var(--text-secondary); font-weight: 400;">11.6</td><td class="best">67.3</td><td class="best">79.5</td><td class="best">7.05</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="result-note">
-                <strong>EVT-Bench:</strong> ABot-N0 achieves <strong>16.1%</strong> improvement in both SR and TR on the challenging Ambiguity Tracking task, even surpassing multi-view methods with single-view input.
+                <strong>Person-following results will be updated in the ABot-N1 technical report.</strong>
             </div>
         </div>
     </div>
@@ -2666,22 +2666,21 @@
 
 <div class="glow-divider"></div>
 
-<!-- ============================================
-     AGENTIC NAVIGATION SYSTEM
-     ============================================ -->
+<!-- AGENTIC NAVIGATION SYSTEM (hidden: images missing) -->
+<!--
 <section class="section" id="agentic">
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-robot"></i> Agentic System</div>
             <h2 class="section-title">Agentic Navigation System</h2>
-            <p class="section-desc">A deployable framework that augments ABot-N0 with planning, topological memory, and self-reflection for robust long-horizon real-world missions.</p>
+            <p class="section-desc">A deployable framework that augments ABot-N1 with planning, topological memory, and self-reflection for robust long-horizon real-world missions.</p>
         </div>
 
         <div class="agentic-layout">
             <div class="figure-block reveal">
                 <img src="static/images/agentic.jpg" alt="Agentic Navigation System">
                 <div class="fig-caption">
-                    <strong>Agentic Navigation System Overview.</strong> The system integrates ABot-N0 with an agentic framework comprising Agentic Planner, Actor, short-term Episodic Memory, and long-term Topo-Memory to handle complex real-world navigation tasks.
+                    <strong>Agentic Navigation System Overview.</strong> The system integrates ABot-N1 with an agentic framework comprising Agentic Planner, Actor, short-term Episodic Memory, and long-term Topo-Memory to handle complex real-world navigation tasks.
                 </div>
             </div>
 
@@ -2715,6 +2714,7 @@
 </section>
 
 <div class="glow-divider"></div>
+-->
 
 <!-- ============================================
      HARDWARE / DEPLOYMENT
@@ -2724,7 +2724,7 @@
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-microchip"></i> Real-World Deployment</div>
             <h2 class="section-title">From Model to Robot</h2>
-            <p class="section-desc">Successfully deployed on Unitree Go2 quadrupedal robot with 2Hz VLA inference and 10Hz closed-loop control.</p>
+            <p class="section-desc">Real-world deployment details and hardware specifications for ABot-N1 will be shared soon.</p>
         </div>
 
         <div class="deploy-grid reveal">
@@ -2732,36 +2732,36 @@
                 <div class="spec-item">
                     <div class="spec-icon"><i class="fas fa-paw"></i></div>
                     <div>
-                        <h4>Unitree Go2 X</h4>
-                        <p>Quadrupedal robot with 12 actuated DOF, dynamically stable locomotion across diverse terrains.</p>
+                        <h4>Robot Platform</h4>
+                        <p>Hardware platform details for ABot-N1 will be shared in the upcoming technical report.</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <div class="spec-icon"><i class="fas fa-camera"></i></div>
                     <div>
-                        <h4>270° Vision Coverage</h4>
-                        <p>Three monocular RGB cameras (H120°×V90° each) providing comprehensive panoramic perception.</p>
+                        <h4>Vision System</h4>
+                        <p>Sensor configuration and field-of-view specifications will be shared in the upcoming technical report.</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <div class="spec-icon"><i class="fas fa-satellite-dish"></i></div>
                     <div>
-                        <h4>4D LiDAR + RTK-GNSS</h4>
-                        <p>Unitree 4D LiDAR L2 for occupancy mapping and RTK-GNSS for global localization.</p>
+                        <h4>Localization & Mapping</h4>
+                        <p>Localization and mapping setup details will be shared in the upcoming technical report.</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <div class="spec-icon"><i class="fas fa-bolt"></i></div>
                     <div>
-                        <h4>NVIDIA Jetson Orin NX</h4>
-                        <p>157 TOPS, 16GB RAM — all VLA inference runs onboard at 2Hz with only 3% performance reduction.</p>
+                        <h4>Onboard Compute</h4>
+                        <p>Edge computing specifications and inference frequency will be shared in the upcoming technical report.</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <div class="spec-icon"><i class="fas fa-cloud"></i></div>
                     <div>
-                        <h4>Hybrid Cloud-Edge Architecture</h4>
-                        <p>Planner on cloud (RTX 4090), VLA + Controller on edge — ensures autonomous operation even without network.</p>
+                        <h4>System Architecture</h4>
+                        <p>Deployment architecture details will be shared in the upcoming technical report.</p>
                     </div>
                 </div>
             </div>
@@ -2783,7 +2783,7 @@
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-video"></i> Video Demonstrations</div>
             <h2 class="section-title">Real-World Demo Videos</h2>
-            <p class="section-desc">Watch ABot-N0 navigate complex real-world environments — from single-task atomic skills to long-horizon agentic missions.</p>
+            <p class="section-desc">Demo videos showcasing ABot-N1 capabilities will be added once available.</p>
         </div>
 
         <div class="video-pillars">
@@ -2831,7 +2831,7 @@
                     <div class="video-pillar-icon"><i class="fas fa-robot"></i></div>
                     <div class="video-pillar-meta">
                         <h3>Real-World Applications</h3>
-                        <p>Practical application scenarios: AI Companion, Guide Dog Assistance — powered by ABot-N0</p>
+                        <p>Practical application scenarios: AI Companion, Guide Dog Assistance — powered by ABot-N1</p>
                     </div>
                 </div>
                 <div class="video-pillar-body">
@@ -2938,20 +2938,18 @@
 
 <div class="glow-divider"></div>
 
-<!-- ============================================
-     DEPLOYMENT VISUALIZATION
-     ============================================ -->
+<!-- DEPLOYMENT VISUALIZATION (hidden: images missing) -->
+<!--
 <section class="section" id="visualization">
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-images"></i> Visualization</div>
             <h2 class="section-title">Deployment Visualization</h2>
-            <p class="section-desc" style="white-space: nowrap;">Real-world navigation trajectories and application scenarios across diverse environments.</p>
+            <p class="section-desc">Visualization gallery for ABot-N1 will be updated with real-world deployment examples.</p>
         </div>
 
         <div class="vis-pillars">
 
-            <!-- Pillar 1: Short-Horizon Tasks -->
             <div class="vis-pillar reveal">
                 <div class="vis-pillar-header">
                     <div class="vis-pillar-icon"><i class="fas fa-crosshairs"></i></div>
@@ -3011,7 +3009,6 @@
                 </div>
             </div>
 
-            <!-- Pillar 2: Long-Horizon Tasks -->
             <div class="vis-pillar reveal">
                 <div class="vis-pillar-header">
                     <div class="vis-pillar-icon"><i class="fas fa-route"></i></div>
@@ -3053,13 +3050,12 @@
                 </div>
             </div>
 
-            <!-- Pillar 3: Applications -->
             <div class="vis-pillar reveal">
                 <div class="vis-pillar-header">
                     <div class="vis-pillar-icon"><i class="fas fa-robot"></i></div>
                     <div class="vis-pillar-meta">
                         <h3>Real-World Applications</h3>
-                        <p>Smart Follow & Load Carry, Guiding Assistance, AI Companion — powered by ABot-N0</p>
+                        <p>Smart Follow & Load Carry, Guiding Assistance, AI Companion — powered by ABot-N1</p>
                     </div>
                 </div>
                 <div class="vis-pillar-body">
@@ -3082,6 +3078,7 @@
 </section>
 
 <div class="glow-divider"></div>
+-->
 
 <!-- ============================================
      BIBTEX
@@ -3096,14 +3093,11 @@
         <div class="bibtex-wrapper reveal">
             <div class="bibtex-box">
                 <button class="bibtex-copy" onclick="copyBibtex()"><i class="fas fa-copy"></i> Copy</button>
-<pre>@misc{chu2026abotn0technicalreportvla,
-    title={ABot-N0: Technical Report on the VLA Foundation Model for Versatile Embodied Navigation}, 
-    author={Zedong Chu and Shichao Xie and Xiaolong Wu and Yanfen Shen and Minghua Luo and Zhengbo Wang and Fei Liu and Xiaoxu Leng and Junjun Hu and Mingyang Yin and Jia Lu and Yingnan Guo and Kai Yang and Jiawei Han and Xu Chen and Yanqing Zhu and Yuxiang Zhao and Xin Liu and Yirong Yang and Ye He and Jiahang Wang and Yang Cai and Tianlin Zhang and Li Gao and Liu Liu and Mingchao Sun and Fan Jiang and Chiyu Wang and Zhicheng Liu and Hongyu Pan and Honglin Han and Zhining Gu and Kuan Yang and Jianfang Zhang and Di Jing and Zihao Guan and Wei Guo and Guoqing Liu and Di Yang and Xiangpo Yang and Menglin Yang and Hongguang Xing and Weiguo Li and Mu Xu},
+<pre>@misc{abotn1_2026,
+    title={ABot-N1: Technical Report}, 
+    author={AMAP CV Lab},
     year={2026},
-    eprint={2602.11598},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO},
-    url={https://arxiv.org/abs/2602.11598}, 
+    note={To appear},
 }</pre>
             </div>
         </div>
@@ -3120,7 +3114,7 @@
      FOOTER
      ============================================ -->
 <footer class="footer">
-    <p>ABot-N0 &copy; 2025 AMAP CV Lab &nbsp;
+    <p>ABot-N1 &copy; 2025 AMAP CV Lab &nbsp;
 </footer>
 
 <!-- ============================================
@@ -3399,10 +3393,11 @@ document.querySelectorAll('.figure-block img, .gallery-card img, .hero-image-wra
 // COPY BIBTEX
 // ============================================
 function copyBibtex() {
-    const bibtex = `@article{abotn0_2025,
-  title={ABot-N0: Technical Report on the VLA Foundation Model for Versatile Embodied Navigation},
+    const bibtex = `@misc{abotn1_2026,
+  title={ABot-N1: Technical Report},
   author={AMAP CV Lab},
-  year={2025}
+  year={2026},
+  note={To appear}
 }`;
     navigator.clipboard.writeText(bibtex).then(() => {
         const btn = document.querySelector('.bibtex-copy');
