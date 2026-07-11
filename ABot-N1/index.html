@@ -555,27 +555,21 @@
 
         .hero-image-wrapper {
             width: 100%;
-            max-width: 1100px;
-            margin-top: 0px;
+            max-width: 970px;
+            margin: 0 auto;
             animation: fadeInUp 0.8s ease 0.5s both;
             position: relative;
         }
 
         .hero-image-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 18px;
-            background: var(--gradient-main);
-            opacity: 0.3;
-            filter: blur(20px);
-            z-index: -1;
+            display: none;
         }
 
         .hero-image-wrapper img {
             width: 100%;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+            border-radius: 0;
+            border: none;
+            background: transparent;
         }
 
         /* ============================================
@@ -887,57 +881,6 @@
             .data-pillar-meta h3 { font-size: 1rem; }
         }
 
-        /* ============================================
-           TRAJECTORY HORIZONTAL SCROLL CARDS
-           ============================================ */
-        .traj-scroll-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 0;
-            overflow: hidden;
-        }
-
-        .traj-scroll-btn {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-
-        .traj-scroll-btn:hover {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .traj-scroll-container {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding: 8px 0;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .traj-scroll-container::-webkit-scrollbar {
-            display: none;
-        }
-
         .traj-card {
             flex: 0 0 280px;
             border-radius: 14px;
@@ -1060,7 +1003,7 @@
             display: inline-block;
             padding: 3px 10px;
             border-radius: 50px;
-            font-size: 0.7rem;
+            font-size: 1.0rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             background: color-mix(in srgb, var(--badge-color) 12%, transparent);
@@ -1082,17 +1025,59 @@
             line-height: 1.55;
         }
 
-        @media (max-width: 768px) {
-            .traj-card {
-                flex: 0 0 260px;
+        /* Grid layout for data task cards */
+        .traj-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .traj-grid .traj-card {
+            flex: none;
+            width: 100%;
+            grid-column: span 2;
+        }
+
+        .traj-grid .traj-card-img {
+            height: 200px;
+        }
+
+        /* Center last two cards in 3-column layout (5 cards total) */
+        .traj-grid .traj-card:nth-child(4) {
+            grid-column: 2 / span 2;
+        }
+
+        .traj-grid .traj-card:nth-child(5) {
+            grid-column: 4 / span 2;
+        }
+
+        @media (max-width: 900px) {
+            .traj-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
-            .traj-scroll-btn {
-                display: none;
+            .traj-grid .traj-card,
+            .traj-grid .traj-card:nth-child(4) {
+                grid-column: span 2;
+            }
+            .traj-grid .traj-card:nth-child(5) {
+                grid-column: 2 / span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .traj-grid {
+                grid-template-columns: 1fr;
+            }
+            .traj-grid .traj-card,
+            .traj-grid .traj-card:nth-child(4),
+            .traj-grid .traj-card:nth-child(5) {
+                grid-column: auto;
             }
         }
 
         /* ============================================
-           TRAINING PIPELINE
+           TRAINING TIMELINE
            ============================================ */
         .training-timeline {
             position: relative;
@@ -1137,7 +1122,6 @@
         }
 
         .training-phase:nth-child(2)::before { border-color: var(--accent-purple); }
-        .training-phase:nth-child(3)::before { border-color: var(--accent-pink); }
 
         .phase-number {
             font-size: 0.75rem;
@@ -1149,7 +1133,6 @@
         }
 
         .training-phase:nth-child(2) .phase-number { color: var(--accent-purple); }
-        .training-phase:nth-child(3) .phase-number { color: var(--accent-pink); }
 
         .training-phase h3 {
             font-size: 1.3rem;
@@ -1161,18 +1144,6 @@
             font-size: 0.92rem;
             color: var(--text-secondary);
             line-height: 1.7;
-        }
-
-        .formula-box {
-            margin-top: 16px;
-            padding: 16px 20px;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.88rem;
-            color: var(--accent-cyan);
-            overflow-x: auto;
         }
 
         /* ============================================
@@ -1281,20 +1252,6 @@
             color: var(--text-primary);
         }
 
-        .result-note {
-            margin-top: 16px;
-            padding: 16px 20px;
-            border-radius: 12px;
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-        }
-
-        .result-note strong {
-            color: var(--accent-cyan);
-        }
-
         /* ============================================
            AGENTIC SYSTEM
            ============================================ */
@@ -1339,331 +1296,171 @@
             line-height: 1.6;
         }
 
-        /* ============================================
-           HARDWARE / DEPLOYMENT
-           ============================================ */
-        .deploy-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .deploy-specs {
-            display: grid;
-            gap: 16px;
-        }
-
-        .spec-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 20px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-        }
-
-        .spec-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--accent-cyan);
-            flex-shrink: 0;
-        }
-
-        .spec-item h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .spec-item p {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-        }
-
-        .deploy-image {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .deploy-image img {
-            width: 100%;
-            display: block;
-        }
-
-        /* ============================================
-           VIDEO DEMO SECTION
-           ============================================ */
-        .video-demo-section {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 212, 255, 0.03) 50%, var(--bg-primary) 100%);
-        }
-
-        .video-pillars {
-            display: flex;
-            flex-direction: column;
-            gap: 48px;
-        }
-
-        .video-pillar {
+        /* Benchmark highlight cards */
+        .bench-card {
+            padding: 36px 32px;
             border-radius: 18px;
-            border: 1px solid var(--border-color);
             background: var(--bg-card);
-            overflow: hidden;
+            border: 1px solid var(--border-color);
             transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .video-pillar:hover {
-            border-color: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+        .bench-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            opacity: 0.8;
         }
 
-        .video-pillar-header {
+        .bench-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .bench-card-header {
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 24px 28px;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(0, 212, 255, 0.02);
+            gap: 14px;
+            margin-bottom: 24px;
         }
 
-        .video-pillar-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+        .bench-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             flex-shrink: 0;
-            color: #fff;
         }
 
-        .video-pillar:nth-child(1) .video-pillar-icon { background: linear-gradient(135deg, #f59e0b, #ec4899); }
-        .video-pillar:nth-child(2) .video-pillar-icon { background: linear-gradient(135deg, #10b981, #00d4ff); }
-        .video-pillar:nth-child(3) .video-pillar-icon { background: linear-gradient(135deg, #00d4ff, #4d7cff); }
-
-        .video-pillar-meta h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+        .bench-card:nth-child(1) .bench-card-icon {
+            background: linear-gradient(135deg, rgba(129, 140, 248, 0.15), rgba(99, 102, 241, 0.15));
+            border: 1px solid rgba(129, 140, 248, 0.25);
         }
 
-        .video-pillar-meta p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
+        .bench-card:nth-child(2) .bench-card-icon {
+            background: linear-gradient(135deg, rgba(129, 140, 248, 0.15), rgba(99, 102, 241, 0.15));
+            border: 1px solid rgba(129, 140, 248, 0.25);
+        }
+
+        .bench-card h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bench-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
 
-        .video-pillar-body {
-            padding: 24px 28px;
-        }
-
-        .video-grid {
-            display: grid;
-            gap: 20px;
-        }
-
-        .video-grid.vcols-1 { grid-template-columns: 1fr; }
-        .video-grid.vcols-2 { grid-template-columns: repeat(2, 1fr); }
-        .video-grid.vcols-3 { grid-template-columns: repeat(3, 1fr); }
-
-        .video-item {
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .video-item:hover {
-            border-color: rgba(0, 212, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .video-item .video-embed-wrap {
-            width: 100%;
+        .bench-list li {
             position: relative;
-            aspect-ratio: 16 / 9;
-            background: rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .video-item .video-embed-wrap iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* YouTube thumbnail lazy-load overlay */
-        .video-item .video-thumb {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-size: cover;
-            background-position: center;
-            transition: all 0.4s ease;
-        }
-
-        .video-item .video-thumb::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            transition: background 0.3s ease;
-        }
-
-        .video-item:hover .video-thumb::after {
-            background: rgba(0, 0, 0, 0.15);
-        }
-
-        .video-item .video-thumb .play-btn {
-            position: relative;
-            z-index: 2;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: rgba(255, 0, 0, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #fff;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .video-item:hover .video-thumb .play-btn {
-            transform: scale(1.1);
-            background: rgba(255, 0, 0, 1);
-            box-shadow: 0 8px 40px rgba(255, 0, 0, 0.4);
-        }
-
-        .video-item .video-label {
-            padding: 12px 16px;
-            font-size: 0.85rem;
+            padding-left: 32px;
+            margin-bottom: 14px;
+            font-size: 0.92rem;
             color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            line-height: 1.7;
         }
 
-        .video-item .video-label .video-tag {
-            font-size: 0.72rem;
-            font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-            padding: 2px 8px;
-            border-radius: 4px;
-            flex-shrink: 0;
+        .bench-list li:last-child {
+            margin-bottom: 0;
         }
 
-        .video-pillar:nth-child(1) .video-tag { background: rgba(245, 158, 11, 0.1); color: var(--accent-orange); }
-        .video-pillar:nth-child(2) .video-tag { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
-        .video-pillar:nth-child(3) .video-tag { background: rgba(0, 212, 255, 0.1); color: var(--accent-cyan); }
-
-        /* Placeholder for videos without URL */
-        .video-item .video-placeholder {
+        .bench-list li::before {
+            content: '★';
             position: absolute;
-            top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
-            gap: 10px;
+            top: 0;
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 6px rgba(0, 212, 255, 0.6), 0 0 14px rgba(0, 212, 255, 0.3);
+            animation: starTwinkle 2.5s ease-in-out infinite;
         }
 
-        .video-item .video-placeholder .placeholder-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: var(--text-muted);
+        .bench-list li:nth-child(2)::before {
+            animation-delay: 0.8s;
         }
 
-        .video-item .video-placeholder .placeholder-text {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-weight: 500;
+        .bench-list li:nth-child(3)::before {
+            animation-delay: 1.6s;
         }
 
-        @media (max-width: 768px) {
-            .video-pillar-header { padding: 18px 20px; gap: 14px; }
-            .video-pillar-body { padding: 18px 20px; }
-            .video-pillar-icon { width: 40px; height: 40px; font-size: 1.1rem; }
-            .video-pillar-meta h3 { font-size: 1rem; }
-            .video-grid.vcols-2, .video-grid.vcols-3 { grid-template-columns: 1fr; }
+        @keyframes starTwinkle {
+            0%, 100% {
+                opacity: 0.7;
+                text-shadow: 0 0 4px rgba(0, 212, 255, 0.4), 0 0 10px rgba(0, 212, 255, 0.2);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.4);
+            }
         }
 
-        /* ============================================
-           VISUALIZATION / GALLERY
-           ============================================ */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .gallery-card {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            transition: all 0.4s ease;
-        }
-
-        .gallery-card:hover {
-            border-color: rgba(0, 212, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .gallery-card img {
-            width: 100%;
-            display: block;
-            cursor: zoom-in;
-        }
-
-        .gallery-card .caption {
-            padding: 16px 20px;
-            font-size: 0.88rem;
+        .bench-card p {
+            font-size: 0.92rem;
             color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
+            line-height: 1.7;
         }
 
         /* ============================================
            VISUALIZATION PILLARS
            ============================================ */
         .vis-pillars {
-            display: flex;
-            flex-direction: column;
-            gap: 48px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 32px;
+        }
+
+        .vis-pillars .vis-pillar {
+            grid-column: span 2;
+        }
+
+        /* Center last two cards (5 cards total: 3 + 2) */
+        .vis-pillars .vis-pillar:nth-child(4) {
+            grid-column: 2 / span 2;
+        }
+
+        .vis-pillars .vis-pillar:nth-child(5) {
+            grid-column: 4 / span 2;
+        }
+
+        @media (max-width: 900px) {
+            .vis-pillars {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .vis-pillars .vis-pillar,
+            .vis-pillars .vis-pillar:nth-child(4) {
+                grid-column: span 2;
+            }
+            .vis-pillars .vis-pillar:nth-child(5) {
+                grid-column: 2 / span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .vis-pillars {
+                grid-template-columns: 1fr;
+            }
+            .vis-pillars .vis-pillar,
+            .vis-pillars .vis-pillar:nth-child(4),
+            .vis-pillars .vis-pillar:nth-child(5) {
+                grid-column: auto;
+            }
         }
 
         .vis-pillar {
@@ -1679,13 +1476,31 @@
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
         }
 
+        .vis-pillar > .vis-img-wrap {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .vis-pillar > .vis-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .vis-pillar:hover > .vis-img-wrap img {
+            transform: scale(1.03);
+        }
+
         .vis-pillar-header {
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 24px 28px;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(0, 212, 255, 0.02);
+            gap: 14px;
+            margin-bottom: 10px;
         }
 
         .vis-pillar-icon {
@@ -1703,105 +1518,25 @@
         .vis-pillar:nth-child(1) .vis-pillar-icon { background: linear-gradient(135deg, #00d4ff, #4d7cff); }
         .vis-pillar:nth-child(2) .vis-pillar-icon { background: linear-gradient(135deg, #4d7cff, #8b5cf6); }
         .vis-pillar:nth-child(3) .vis-pillar-icon { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+        .vis-pillar:nth-child(4) .vis-pillar-icon { background: linear-gradient(135deg, #ec4899, #f59e0b); }
+        .vis-pillar:nth-child(5) .vis-pillar-icon { background: linear-gradient(135deg, #f59e0b, #00d4ff); }
 
-        .vis-pillar-meta h3 {
-            font-size: 1.15rem;
+        .vis-pillar-header h3 {
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .vis-pillar-meta p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            margin: 0;
         }
 
         .vis-pillar-body {
-            padding: 24px 28px;
+            padding: 18px 22px 22px;
         }
 
-        .vis-grid {
-            display: grid;
-            gap: 20px;
-        }
-
-        .vis-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .vis-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-
-        .vis-item {
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .vis-item:hover {
-            border-color: rgba(0, 212, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .vis-item .vis-img-wrap {
-            width: 100%;
-            overflow: hidden;
-            cursor: zoom-in;
-            position: relative;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .vis-item .vis-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .vis-item:hover .vis-img-wrap img {
-            transform: scale(1.03);
-        }
-
-        /* Short-horizon tasks: wider images ~3:1 */
-        .vis-pillar:nth-child(1) .vis-img-wrap {
-            aspect-ratio: 16 / 6;
-        }
-
-        /* Long-horizon tasks: mixed ratios, use balanced ratio */
-        .vis-pillar:nth-child(2) .vis-img-wrap {
-            aspect-ratio: 16 / 7;
-        }
-
-        /* Application: taller image */
-        .vis-pillar:nth-child(3) .vis-img-wrap {
-            aspect-ratio: 16 / 12;
-        }
-
-        .vis-item .vis-label {
-            padding: 12px 16px;
+        .vis-pillar-body p {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            line-height: 1.6;
         }
 
-        .vis-item .vis-label .vis-tag {
-            font-size: 0.72rem;
-            font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--accent-cyan);
-            flex-shrink: 0;
-        }
 
-        .vis-pillar:nth-child(2) .vis-tag { background: rgba(77, 124, 255, 0.1); color: var(--accent-purple); }
-        .vis-pillar:nth-child(3) .vis-tag { background: rgba(236, 72, 153, 0.1); color: var(--accent-pink); }
 
         .vis-placeholder {
             border-radius: 14px;
@@ -1926,10 +1661,8 @@
            ============================================ */
         @media (max-width: 1024px) {
             .pillars-grid { grid-template-columns: 1fr; }
-            .deploy-grid { grid-template-columns: 1fr; }
             .agentic-features { grid-template-columns: 1fr; }
             .data-highlight-grid { grid-template-columns: repeat(2, 1fr); }
-            .video-grid.vcols-3 { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
@@ -1941,8 +1674,6 @@
             .section { padding: 80px 20px; }
             .hero { padding: 100px 20px 60px; }
             .hero-stats { gap: 24px; }
-            .demo-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
             .benchmark-tabs { gap: 4px; }
             .benchmark-tab { padding: 8px 12px; font-size: 0.78rem; }
             .data-highlight-grid { grid-template-columns: 1fr 1fr; }
@@ -2029,9 +1760,63 @@
         .figure-block .fig-caption strong {
             color: var(--text-primary);
         }
+
+        /* ============================================
+           SPLASH VIDEO OVERLAY
+           ============================================ */
+        .splash-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+        }
+
+        .splash-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-overlay video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .splash-skip {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            z-index: 100000;
+        }
+
+        .splash-skip:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
+
+<!-- Splash Video Overlay -->
+<div class="splash-overlay" id="splashOverlay">
+    <video id="splashVideo" src="static/videos/ABot-N1top.mp4" muted autoplay playsinline preload="auto"></video>
+    <button class="splash-skip" id="splashSkip">Skip <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i></button>
+</div>
 
 <!-- Background Grid -->
 <div class="grid-bg"></div>
@@ -2052,12 +1837,11 @@
     <ul class="nav-links">
         <li><a href="#abstract">Abstract</a></li>
         <li><a href="#architecture">Architecture</a></li>
-        <li><a href="#data-engine">Data Engine</a></li>
+        <li><a href="#data-engine">Data</a></li>
         <li><a href="#training">Training</a></li>
+        <li><a href="#benchmark">Benchmark</a></li>
         <li><a href="#results">Results</a></li>
-        <li><a href="#agentic">Agentic System</a></li>
-        <li><a href="#deployment">Deployment</a></li>
-        <li><a href="#video-demos">Demos</a></li>
+        <li><a href="#visualization">Visualization</a></li>
         <li class="nav-dropdown">
             <span class="nav-dropdown-trigger">More Research <i class="fas fa-chevron-down chevron"></i></span>
             <div class="nav-dropdown-menu"> 
@@ -2082,11 +1866,11 @@
                 <a href="https://miv-xjtu.github.io/JanusVLN.github.io/" target="_blank" class="nav-dropdown-item">
                     <i class="fas fa-brain item-icon"></i> JanusVLN (ICLR26) <i class="fas fa-external-link-alt ext-arrow"></i>
                 </a>
-                <a href="https://arxiv.org/abs/2602.06427" target="_blank" class="nav-dropdown-item">
-                    <i class="fas fa-door-open item-icon"></i> BridgeNav <i class="fas fa-external-link-alt ext-arrow"></i>
+                <a href="https://arxiv.org/abs/2604.24086" target="_blank" class="nav-dropdown-item">
+                    <i class="fas fa-door-open item-icon"></i> AsyncShield (IROS26) <i class="fas fa-external-link-alt ext-arrow"></i>
                 </a>
-                <a href="https://arxiv.org/abs/2512.02400" target="_blank" class="nav-dropdown-item">
-                    <i class="fas fa-search-location item-icon"></i> Nav-R² <i class="fas fa-external-link-alt ext-arrow"></i>
+                <a href="https://arxiv.org/abs/2604.19034" target="_blank" class="nav-dropdown-item">
+                    <i class="fas fa-search-location item-icon"></i> Explore Like Humans (IROS26) <i class="fas fa-external-link-alt ext-arrow"></i>
                 </a>
             </div>
         </li>
@@ -2113,54 +1897,51 @@
         <span class="model-name">ABot-N1</span>
     </h1>
     <p class="hero-subtitle">
-        The next-generation navigation model in the ABot series. Technical report and benchmark results coming soon.
+        The next-generation navigation model in the ABot series. Technical report has been released open-source simultaneously!
     </p>
 
     <div class="hero-stats">
         <div class="hero-stat">
-            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="number" data-target="5" data-suffix="">0</div>
             <div class="label">Core Tasks</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="number" data-target="7" data-suffix="">0</div>
             <div class="label">Benchmarks</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="1" data-suffix="+">0</div>
-            <div class="label">Expert Trajectories</div>
+            <div class="number" data-target="482" data-suffix="km">0</div>
+            <div class="label">Paths</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="number" data-target="8423" data-suffix="">0</div>
             <div class="label">3D Scenes</div>
         </div>
         <div class="hero-stat">
-            <div class="number" data-target="1" data-suffix="+">0</div>
-            <div class="label">Reasoning Samples</div>
-        </div>
-        <div class="hero-stat">
-            <div class="number" data-target="1" data-suffix="+">0</div>
+            <div class="number" data-target="14.72" data-suffix="km²">0</div>
             <div class="label">Coverage</div>
         </div>
     </div>
 
     <div class="hero-actions">
-        <a href="#citation" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Paper (Coming Soon)</a>
-        <a href="https://github.com/amap-cvlab/ABot-Navigation" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-        <a href="#video-demos" class="btn btn-secondary"><i class="fas fa-play-circle"></i> Watch Demos</a>
+        <a href="#citation" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Technical report</a>
+        <!-- <a href="https://github.com/amap-cvlab/ABot-Navigation" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a> -->
+        <a href="#visualization" class="btn btn-secondary"><i class="fas fa-images"></i> Visualization</a>
     </div>
 
-    <div class="hero-video-wrapper">
+    <br>
+    <!-- <div class="hero-video-wrapper">
         <video id="intro-video" src="static/videos/intro.mp4" muted autoplay playsinline loop></video>
-    </div>
+    </div> -->
     <div class="hero-image-wrapper">
-        <img src="static/images/overview.png" alt="ABot-N1 Overview" loading="lazy">
+        <img src="static/images/D8A9E619-430E-4E25-87ED-60E7CF68A153.png" alt="ABot-N1 Overview" loading="lazy">
     </div>
 </section>
 
 <div class="glow-divider"></div>
 
 <!-- ============================================
-     ABSTRACT
+     ABSTRACT（TODO: Modify Abstract）
      ============================================ -->
 <section class="section" id="abstract">
     <div class="section-inner reveal">
@@ -2169,13 +1950,14 @@
             <h2 class="section-title">ABot-N1 Overview</h2>
         </div>
 
-        <p class="abstract-text">
-            <strong>ABot-N1</strong> advances the ABot series by addressing the limitations of monolithic navigation policies—such as coordinate drift and lack of interpretability. We introduce a novel <strong>Fast-Slow Architecture</strong> that factorizes cognition from control, combining deep visual-language reasoning with high-frequency action execution.
-        </p>
+        <p class="abstract-text"><strong>ABot-N1</strong> is a step toward a general Visual Language Navigation foundation model, designed to address the limitations of monolithic black-box policies, including coordinate drift, weak handling of long-tail semantics, and limited interpretability. By decoupling cognition from control with a <strong>slow-fast architecture</strong> guided by dual visual-language signals, ABot-N1 enables robust, generalizable, and transparent navigation across diverse embodied tasks. A slow vision-language reasoner performs explicit Chain-of-Thought reasoning and produces <strong>pixel goals</strong> as universal image-space anchors for point-goal, object-goal, POI-goal, instruction-following, and person-following tasks. A fast action expert then combines textual cues and pixel guidance to generate continuous waypoints at the native control frequency, bridging high-level intent and low-level control.</p>
         <br>
-        <p class="abstract-text">
-            Unlike its predecessor, ABot-N1 employs a <strong>Slow Vision-Language Reasoner</strong> to perform explicit Chain-of-Thought (CoT) reasoning and emit universal Pixel Goals. These image-space anchor points are then consumed by a <strong>Fast Action Expert</strong> to generate continuous waypoints. This design re-ground the goal at every step, offering superior robustness, open-vocabulary generalization, and human-readable decision logs across simulation and real-world deployments.
-        </p>
+        <p class="abstract-text">ABot-N1 achieves new state-of-the-art results, including a <strong>35.0%</strong> gain in POI arrival to <strong>77.3%</strong>, and <strong>95.4% / 92.9%</strong> SR in complex indoor and outdoor scenes. We also release new open-source Point-Goal and POI-Goal benchmarks to advance urban-scale navigation.</p>
+
+
+        <div class="figure-block reveal" style="margin: 40px auto 0; max-width: 1000px;">
+            <img src="static/images/contribution.jpg" alt="ABot-N1 Contribution Overview" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color);" onclick="openLightbox(this)">
+        </div>
 
         <!-- 5 Tasks -->
         <div class="tasks-grid">
@@ -2183,6 +1965,11 @@
                 <div class="task-icon"><i class="fas fa-crosshairs"></i></div>
                 <h3>Point-Goal</h3>
                 <p>Reach precise metric coordinates, serving as the foundational primitive for robust locomotion and obstacle avoidance.</p>
+            </div>
+            <div class="task-card reveal">
+                <div class="task-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>POI-Goal</h3>
+                <p>Identify Points of Interest and navigate to their physical entrances, bridging outdoor-indoor environments.</p>
             </div>
             <div class="task-card reveal">
                 <div class="task-icon"><i class="fas fa-search"></i></div>
@@ -2193,11 +1980,6 @@
                 <div class="task-icon"><i class="fas fa-route"></i></div>
                 <h3>Instruction-Following</h3>
                 <p>Execute long-horizon, complex natural language paths with rigorous linguistic-action alignment.</p>
-            </div>
-            <div class="task-card reveal">
-                <div class="task-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>POI-Goal</h3>
-                <p>Identify Points of Interest and navigate to their physical entrances, bridging outdoor-indoor environments.</p>
             </div>
             <div class="task-card reveal">
                 <div class="task-icon"><i class="fas fa-walking"></i></div>
@@ -2217,17 +1999,25 @@
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-brain"></i> Model Architecture</div>
-            <h2 class="section-title">Hierarchical Fast-Slow Architecture</h2>
-            <p class="section-desc">We introduce a novel Architecture that factorizes cognition from control, combining deep visual-language reasoning with high-frequency action execution.</p>
+            <h2 class="section-title">Asynchronous Dual-System Architecture</h2>
+            <p class="section-desc">We introduce a novel dual ARCHITECTURE that factorizes cognition from control, combining deep visual-language reasoning with high-frequency action execution.</p>
         </div>
 
         <div class="arch-content reveal">
             <div class="figure-block">
-                <img src="static/images/model.png" alt="ABot-N1 Architecture">
+                <img src="static/images/model.jpg" alt="ABot-N1 Architecture">
                 <div class="fig-caption">
-                    <strong>The fast--slow dual-system architecture of ABot-N1</strong>. Navigation is decoupled into asynchronous cognition and high-frequency control.<strong>Slow System (left):</strong> A vision-language reasoner processes historical frames and task prompts at low frequency, producing explicit Chain-of-Thought (CoT) reasoning and visual anchors (Target Pixel and Affordance Pixel).<strong>Dual Vision-Language Interface (middle):</strong> The language and visual outputs form a unified bridge between the two systems.<strong>Fast System (right):</strong> A lightweight-VLM-based action expert integrates the dual guidance with real-time observations; a learnable action query attends the output hidden states via a QFormer module, and an MLP decodes the queries to predict continuous waypoints. The system is trained with pretraining and GRPO, enabling complex reasoning without blocking the reactive control loop.
-                </div>
-            </div>
+                    <strong>The Slow-Fast Dual-System Architecture of ABot-N1.</strong> Navigation is decoupled into asynchronous cognition and high-frequency control.
+                    <strong>Slow System (left)</strong>: A vision-language reasoner processes historical frames
+                    and task prompts at low frequency, producing explicit CoT reasoning
+                    and visual anchors (Target Pixel and Affordance Pixel).
+                    <strong>Dual Vision-Language Interface (middle)</strong>: The language and visual outputs
+                    form a unified bridge between the two systems.
+                    <strong>Fast System (right)</strong>: A lightweight-VLM-based action expert integrates the dual guidance
+                    with real-time observations; a learnable action query attends to the output hidden states
+                    via a QFormer module, and an MLP decodes the queries to predict continuous waypoints.
+                    The system is trained with pretraining and GRPO, enabling complex reasoning without
+                    blocking the reactive control loop.
         </div>
 
         <div class="pillars-grid reveal">
@@ -2258,136 +2048,72 @@
 <section class="section" id="data-engine">
     <div class="section-inner">
         <div class="section-header reveal">
-            <div class="section-tag"><i class="fas fa-database"></i> Data Engine</div>
-            <h2 class="section-title">ABot-N1 Data Engine</h2>
-            <p class="section-desc">Data engine specifications, scene coverage, and trajectory scale will be detailed in the upcoming technical report.</p>
+            <div class="section-tag"><i class="fas fa-database"></i> Pre-Training Data</div>
+            <h2 class="section-title">Training Data Recipe</h2>
+            <p class="section-desc">The ABot-N1 pre-training data engine integrates diverse 3D scenes and aggregates expert demonstrations across five core navigation paradigms, providing the essential supervision for both the slow reasoning system and the fast action expert.</p>
         </div>
 
         <div class="data-highlight-grid reveal">
             <div class="data-highlight">
-                <div class="number">TBD</div>
+                <div class="number">30M</div>
+                <div class="unit">Pretraining Data</div>
+            </div>
+            <div class="data-highlight">
+                <div class="number">8,423</div>
                 <div class="unit">3D Scenes</div>
             </div>
             <div class="data-highlight">
-                <div class="number">TBD</div>
+                <div class="number">14.7<span style="font-size:1rem;">km²</span></div>
                 <div class="unit">Total Area Coverage</div>
             </div>
             <div class="data-highlight">
-                <div class="number">TBD</div>
-                <div class="unit">Expert Trajectories</div>
-            </div>
-            <div class="data-highlight">
-                <div class="number">TBD</div>
-                <div class="unit">Reasoning Samples</div>
+                <div class="number">482km</div>
+                <div class="unit">Paths</div>
             </div>
         </div>
 
-        <!-- Three Pillars of Data Engine -->
-        <div class="data-pillars">
+        <!-- Per-Task Data Breakdown -->
+        <div class="section-subheader reveal" style="margin-top: 40px;">
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Per-Task Data Breakdown</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 6px;">5 Navigation Tasks · 30M Trajectories Data</p>
+        </div>
 
-            <!-- Pillar 1: 3D Scene Ecosystem -->
-            <div class="data-pillar reveal">
-                <div class="data-pillar-header">
-                    <div class="data-pillar-number">01</div>
-                    <div class="data-pillar-meta">
-                        <h3>Pre-training Data Recipe</h3>
-                    </div>
-                </div>
-                <div class="data-pillar-body">
-                    <div class="figure-block" style="margin: 0;">
-                        <img src="static/images/data.png" alt="3D Scene Ecosystem & Data Sources">
-                        <div class="fig-caption">
-                            <strong>Pre-training data pipeline and composition.</strong> The data engine (left) provides diverse indoor and outdoor simulation scenes; trajectory generation (middle) produces expert and Dagger rollouts; the resulting samples (right) are distributed across five navigation tasks, broken down by slow-system (high-level) and fast-system (low-level) counts.
-                        </div>
-                    </div>
-                    <!-- <div class="figure-block" style="margin: 1.5rem 0 0 0;">
-                        <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px;">
-                            <iframe src="https://www.youtube.com/embed/EonbUL-1uPo" title="High-Fidelity 3D Scene Ecosystem Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"></iframe>
-                        </div>
-                    </div> -->
+        <div class="traj-grid reveal">
+            <div class="traj-card">
+                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/point_goal.jpg" alt="Point-Goal Data Pipeline"></div>
+                <div class="traj-card-body">
+                    <span class="traj-badge" style="--badge-color: var(--accent-cyan);">Point-Goal</span>
+                    <p>Left: the two-part data construction pipeline, including CoT data generation with affordance pixels and target perturbation, and VLA data synthesis with sub-optimal and OOD-correction trajectories. Right: an example structured sample with tri-view observations and affordance pixel annotations.</p>
                 </div>
             </div>
-
-            <!-- Pillar 2: Trajectories Dataset -->
-            <div class="data-pillar reveal">
-                <div class="data-pillar-header">
-                    <div class="data-pillar-number">02</div>
-                    <div class="data-pillar-meta">
-                        <h3>Universal Trajectories Dataset</h3>
-                        <p class="data-pillar-stats"><span class="dp-stat">Trajectories TBD</span><span class="dp-divider">·</span><span class="dp-stat">Navigation Tasks TBD</span></p>
-                    </div>
-                </div>
-                <div class="data-pillar-body">
-                    <div class="traj-scroll-wrapper">
-                        <button class="traj-scroll-btn traj-scroll-left" onclick="scrollTraj(-1)" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-                        <div class="traj-scroll-container" id="trajScroll">
-                            <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/point_data.png" alt="Point-Goal Data Pipeline"></div>
-                                <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-cyan);">Coming Soon</span>
-                                    <h4>Point-Goal</h4>
-                                    <p>Details to be announced in the upcoming technical report.</p>
-                                </div>
-                            </div>
-                            <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/object_data.png" alt="Object-Goal"></div>
-                                <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-blue);">Coming Soon</span>
-                                    <h4>Object-Goal</h4>
-                                    <p>Details to be announced in the upcoming technical report.</p>
-                                </div>
-                            </div>
-                            <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/ins_data.png" alt="Instruction-Following"></div>
-                                <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-purple);">Coming Soon</span>
-                                    <h4>Instruction-Following</h4>
-                                    <p>Details to be announced in the upcoming technical report.</p>
-                                </div>
-                            </div>
-                            <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/poi_data.png" alt="POI-Goal"></div>
-                                <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-pink);">Coming Soon</span>
-                                    <h4>POI-Goal</h4>
-                                    <p>Details to be announced in the upcoming technical report.</p>
-                                </div>
-                            </div>
-                            <div class="traj-card">
-                                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/person_data.png" alt="Person-Following"></div>
-                                <div class="traj-card-body">
-                                    <span class="traj-badge" style="--badge-color: var(--accent-green);">Coming Soon</span>
-                                    <h4>Person-Following</h4>
-                                    <p>Details to be announced in the upcoming technical report.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="traj-scroll-btn traj-scroll-right" onclick="scrollTraj(1)" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-                    </div>
+            <div class="traj-card">
+                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/poi_goal.jpg" alt="POI-Goal Data"></div>
+                <div class="traj-card-body">
+                    <span class="traj-badge" style="--badge-color: var(--accent-pink);">POI-Goal</span>
+                    <p>Left: a three-stage construction pipeline that generates geometric seed annotations via monocular depth, scales and filters 31M street-view pairs with a distilled VLM to obtain 8M valid paths, and synthesizes tri-view episodes into positive and negative sample pairs to improve rejection under missing-target conditions. Right: an example structured sample.</p>
                 </div>
             </div>
-
-            <!-- Pillar 3: Reasoning Dataset (hidden: image missing) -->
-            <!--
-            <div class="data-pillar reveal">
-                <div class="data-pillar-header">
-                    <div class="data-pillar-number">03</div>
-                    <div class="data-pillar-meta">
-                        <h3>Cognitive Reasoning Dataset</h3>
-                        <p class="data-pillar-stats"><span class="dp-stat">Samples TBD</span><span class="dp-divider">·</span><span class="dp-stat">Reasoning Tasks TBD</span></p>
-                    </div>
-                </div>
-                <div class="data-pillar-body">
-                    <div class="figure-block" style="margin: 0;">
-                        <img src="static/images/reasoning.jpg" alt="Reasoning Dataset">
-                        <div class="fig-caption">
-                            <strong>Cognitive Reasoning Dataset.</strong> Detailed reasoning dataset statistics for ABot-N1 will be released in the upcoming technical report.
-                        </div>
-                    </div>
+            <div class="traj-card">
+                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/obj_goal.jpg" alt="Object-Goal Data"></div>
+                <div class="traj-card-body">
+                    <span class="traj-badge" style="--badge-color: var(--accent-blue);">Object-Goal</span>
+                    <p>The left panel shows a two-part data pipeline: an iterative flywheel that scales VLM-seeded CoT rationales to 110K high-quality structured samples via A* consistency filtering and self-play harvesting, and a VLA pipeline that generates low-level supervision through pixel annotation and OOD-correction trajectories. The right panel shows the resulting structured tuple, with tri-view observations, object and affordance pixel grounding, and two-block CoT rationales.</p>
                 </div>
             </div>
-            -->
-
+            <div class="traj-card">
+                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/ins_follow.jpg" alt="Instruction-Following Data"></div>
+                <div class="traj-card-body">
+                    <span class="traj-badge" style="--badge-color: var(--accent-purple);">Instruction-Following</span>
+                    <p>Left: a three-stage pipeline that decomposes long natural-language instructions into sub-instructions, aligns them with milestone frame ranges, and generates/verifies affordance and target pixels for CoT and VLA data. Right: an example structured sample with tri-view observations, language instructions, and pixel-level affordance and target annotations.</p>
+                </div>
+            </div>
+            <div class="traj-card">
+                <div class="traj-card-img" onclick="openLightbox(this.querySelector('img'))"><img src="static/images/person_follow.jpg" alt="Person-Following Data"></div>
+                <div class="traj-card-body">
+                    <span class="traj-badge" style="--badge-color: var(--accent-green);">Person-Following</span>
+                    <p>Left: a unified data construction pipeline for both CoT and VLA data, where CoT samples derive affordance and target pixels from human avatar trajectories via A* waypoint planning, visibility detection, and stochastic perturbation, and VLA samples are built from sub-optimal and OOD-correction trajectories. Right: an example structured sample with tri-view observations, affordance and target pixel annotations, and a language instruction describing the target appearance.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -2400,33 +2126,79 @@
 <section class="section" id="training">
     <div class="section-inner">
         <div class="section-header reveal">
-            <div class="section-tag"><i class="fas fa-graduation-cap"></i> Training Recipe</div>
-            <h2 class="section-title">Training Recipe</h2>
-            <p class="section-desc">The ABot-N1 training pipeline will be released alongside the technical report.</p>
+            <div class="section-tag"><i class="fas fa-graduation-cap"></i> Dual-System training</div>
+            <h2 class="section-title">Training Protocol</h2>
+            <p class="section-desc">ABot-N1 employs a progressive post-training pipeline that transforms the pre-trained foundation into a socially compliant, generalizable navigator. Training dynamics and generality analysis further validate the effectiveness of each stage.</p>
         </div>
 
         <div class="training-timeline reveal">
             <div class="training-phase">
-                <div class="phase-number">Phase 1</div>
-                <h3>Pre-training</h3>
-                <p>Details of the ABot-N1 pre-training stage will be released in the upcoming technical report.</p>
+                <div class="phase-number">Stage 1 · Pre-Training</div>
+                <h3>Pre-Training</h3>
+                <p><strong>ABot-N1</strong> initializes both systems from pre-trained Qwen-3.5 checkpoints. The slow system is trained with a cross-entropy loss for CoT tokens and pixel coordinates, while the fast system is supervised with smooth-<em>L</em><sub>1</sub> loss on position and heading angle, together with a binary arriving loss.</p>
+
+                <p>Unlike generic VLN settings, where smooth-<em>L</em><sub>1</sub> regression can suffer from mode collapse on multi-modal targets, ABot-N1 avoids this issue through its dual-system design. The slow system first makes the discrete decision with CoT reasoning and pixel-goal output, which concentrates the future-waypoint distribution into a dominant mode. Conditioned on these outputs, the fast policy faces an approximately uni-modal regression problem, making smooth-<em>L</em><sub>1</sub> stable and sample-efficient. Both systems are also trained with <strong>noise-injected inputs</strong>, such as perturbed target coordinates, noisy prior pixel predictions, and simulated asynchronous lag, to improve robustness against imperfect upstream signals during deployment.</p>
+
             </div>
 
             <div class="training-phase">
-                <div class="phase-number">Phase 2</div>
-                <h3>Supervised Fine-Tuning</h3>
-                <p>Details of the ABot-N1 supervised fine-tuning stage will be released in the upcoming technical report.</p>
-                <div class="formula-box">
-                    ℒ<sub>SFT</sub> = TBD
+                <div class="phase-number">Stage 2 · Post-training (GRPO)</div>
+                <h3>GRPO-Based Alignment</h3>
+                <p>To preserve pretrained capabilities during GRPO training, we avoid biased preference sampling and use action-balanced batch sampling to keep the data unbiased and training stable. This also helps prevent reward-hacking equilibria such as target withholding and permanent inaction by balancing target and safety rewards and adding a strong penalty for missing predictions.</p>
+
+                <p>The reward design is task-agnostic by construction: <em>R</em><sub>format</sub> depends only on the output schema, and <em>R</em><sub>safety</sub> depends only on scene geometry and traversability rules. Extending ABot-N1 to instruction-following, object-goal, or person-following requires only redefining <em>R</em><sub>target</sub>, and we validate the pipeline at scale on 0.5M point-goal episodes.</p>
+
+            </div>
+        </div>
+
+        <!-- Training data pipeline overview -->
+        <div class="figure-block reveal" style="margin-bottom: 40px;">
+            <img src="static/images/data_recipe.jpg" alt="Training Data Pipeline and Composition">
+        </div>
+    </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ============================================
+     ABOT-N BENCHMARK
+     ============================================ -->
+<section class="section" id="benchmark">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-trophy"></i> ABot-N Benchmark</div>
+            <h2 class="section-title">ABot-N Benchmark</h2>
+        </div>
+
+        <div class="agentic-layout">
+            <div class="figure-block reveal" style="max-width: 1000px; margin: 40px auto;">
+                <img src="static/images/bench.jpg" alt="ABot-N Benchmark Overview">
+                <div class="fig-caption">
+                    <strong>Overview of the ABotN Benchmark Suites and their Unified Scene Construction Pipeline.</strong> Top: dataset statistics and distance splits for <strong>ABotN-PointBench</strong> and <strong>ABotN-POIBench</strong>. Bottom: a unified three-stage pipeline that uses LiDAR-inertial SLAM for high-fidelity data collection, 3DGS modeling from aligned dense point clouds, and traversability-aware query sampling with A<sup>*</sup> reference trajectory generation on MoGe-V2-derived occupancy grids.
                 </div>
             </div>
-
-            <div class="training-phase">
-                <div class="phase-number">Phase 3</div>
-                <h3>Alignment & Refinement</h3>
-                <p>Details of the ABot-N1 alignment and refinement stage will be released in the upcoming technical report.</p>
-                <div class="formula-box">
-                    ℛ<sub>total</sub> = TBD
+            <div class="agentic-features reveal">
+                <div class="bench-card">
+                    <div class="bench-card-header">
+                        <div class="bench-card-icon">🎯</div>
+                        <h4>ABotN-PointBench</h4>
+                    </div>
+                    <ol class="bench-list">
+                        <li>ABotN-PointBench addresses key gaps in prior Point-Goal benchmarks, including scene homogeneity, open-loop evaluation, and missing social-rule compliance.</li>
+                        <li>It spans <strong>31 real-world scenes</strong> across indoor and outdoor environments, with fine-grained walkability annotations and <strong>465 reference trajectories</strong>.</li>
+                        <li>We evaluate with <strong>SR and SPL</strong>, measuring both navigation success and socially compliant closed-loop control.</li>
+                    </ol>
+                </div>
+                <div class="bench-card">
+                    <div class="bench-card-header">
+                        <div class="bench-card-icon">🌍</div>
+                        <h4>ABotN-POIBench</h4>
+                    </div>
+                    <ol class="bench-list">
+                        <li>ABotN-POIBench fills the gap between open-loop waypoint prediction and coarse block-level POI evaluation, which miss entrance-level arrival accuracy.</li>
+                        <li>It covers <strong>11 commercial regions and 163 POIs</strong>, with high-fidelity 3DGS reconstructions and physical entrance annotations.</li>
+                        <li>We evaluate with <strong>SR@2m and SPL</strong>, measuring final-meters arrival accuracy and efficient POI navigation.</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -2443,12 +2215,12 @@
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-chart-bar"></i> Evaluation</div>
             <h2 class="section-title">Evaluation Results</h2>
-            <p class="section-desc">Benchmark results for ABot-N1 will be released in the upcoming technical report.</p>
+            <p class="section-desc">ABot-N1 is evaluated across five navigation paradigms and seven benchmarks, achieving new state-of-the-art performance. Results are organized by task — select a tab to explore each benchmark.</p>
         </div>
 
         <div class="benchmark-tabs reveal" id="benchmarkTabs">
-            <button class="benchmark-tab active" data-tab="pointgoal-open">Point-Goal (Open-loop)</button>
-            <button class="benchmark-tab" data-tab="pointgoal-close">Point-Goal (Closed-loop)</button>
+            <button class="benchmark-tab active" data-tab="pointgoal-open">ABotN-PointBench (Outdoor)</button>
+            <button class="benchmark-tab" data-tab="pointgoal-close">ABotN-PointBench (Indoor)</button>
             <button class="benchmark-tab" data-tab="objectgoal">Object-Goal</button>
             <button class="benchmark-tab" data-tab="instruction-r2r">VLN-CE R2R</button>
             <button class="benchmark-tab" data-tab="instruction-rxr">VLN-CE RxR</button>
@@ -2456,64 +2228,61 @@
             <button class="benchmark-tab" data-tab="person">Person-Following</button>
         </div>
 
-        <!-- Point-Goal Open-Loop -->
+        <!-- Point-Goal Outdoor -->
         <div class="benchmark-panel active" id="pointgoal-open">
             <div class="result-table-wrapper reveal">
                 <table class="result-table">
                     <thead>
                         <tr>
-                            <th>Method</th>
-                            <th>Mean</th>
-                            <th>Turn</th>
-                            <th>Crossing</th>
-                            <th>Detour</th>
-                            <th>Proximity</th>
-                            <th>Crowd</th>
-                            <th>Other</th>
-                            <th>All</th>
+                            <th rowspan="2">Method</th>
+                            <th colspan="4">SR (↑)</th>
+                            <th colspan="4">SPL (↑)</th>
+                        </tr>
+                        <tr>
+                            <th>All</th><th>L</th><th>M</th><th>H</th>
+                            <th>All</th><th>L</th><th>M</th><th>H</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="method-name">GNM</td><td>16.2</td><td>31.1</td><td>14.8</td><td>12.5</td><td>14.7</td><td>12.8</td><td>11.0</td><td>12.1</td></tr>
-                        <tr><td class="method-name">ViNT</td><td>16.5</td><td>31.1</td><td>15.4</td><td>12.9</td><td>14.8</td><td>13.3</td><td>11.6</td><td>12.6</td></tr>
-                        <tr><td class="method-name">NoMaD</td><td>19.1</td><td>35.1</td><td>18.5</td><td>15.6</td><td>18.1</td><td>14.3</td><td>12.8</td><td>12.1</td></tr>
-                        <tr><td class="method-name">CityWalker</td><td>15.2</td><td>26.6</td><td>14.1</td><td>13.9</td><td>14.3</td><td>12.0</td><td>10.4</td><td>11.5</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">11.2</td><td class="best">21.3</td><td class="best">9.8</td><td class="best">12.8</td><td class="best">8.1</td><td class="best">8.8</td><td class="best">6.3</td><td class="best">7.6</td></tr>
+                        <tr><td class="method-name">GNM</td><td>39.1</td><td>66.7</td><td>32.0</td><td>18.7</td><td>36.7</td><td>65.3</td><td>28.4</td><td>16.5</td></tr>
+                        <tr><td class="method-name">ViNT</td><td>62.2</td><td>92.0</td><td>50.7</td><td>44.0</td><td>62.2</td><td>92.0</td><td>50.6</td><td>44.0</td></tr>
+                        <tr><td class="method-name">NoMaD</td><td>56.0</td><td>90.7</td><td>45.3</td><td>32.0</td><td>55.7</td><td>90.0</td><td>45.3</td><td>31.6</td></tr>
+                        <tr><td class="method-name">CityWalker</td><td>48.9</td><td>73.3</td><td>40.0</td><td>33.3</td><td>48.3</td><td>72.2</td><td>39.7</td><td>32.8</td></tr>
+                        <tr><td class="method-name">SocialNav</td><td>72.0</td><td>93.3</td><td>60.0</td><td>58.7</td><td>71.9</td><td>93.2</td><td>63.9</td><td>58.7</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>76.9</td><td>93.3</td><td>72.0</td><td>65.3</td><td>76.9</td><td>93.3</td><td>72.0</td><td>65.3</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">92.9</td><td class="best">96.0</td><td class="best">94.7</td><td class="best">88.0</td><td class="best">91.4</td><td class="best">95.6</td><td class="best">92.3</td><td class="best">86.4</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>Open-loop point-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
 
         <!-- Point-Goal Closed-Loop -->
         <div class="benchmark-panel" id="pointgoal-close">
-            <div class="result-table-wrapper reveal">
+           <div class="result-table-wrapper reveal">
                 <table class="result-table">
                     <thead>
                         <tr>
-                            <th>Method</th>
-                            <th>SR↑</th>
-                            <th>RC↑</th>
-                            <th>SPL↑</th>
-                            <th>DCR↑</th>
-                            <th>TCR↑</th>
+                            <th rowspan="2">Method</th>
+                            <th colspan="4">SR (↑)</th>
+                            <th colspan="4">SPL (↑)</th>
+                        </tr>
+                        <tr>
+                            <th>All</th><th>L</th><th>H</th>
+                            <th>All</th><th>L</th><th>H</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="method-name">GNM*</td><td>43.3</td><td>62.4</td><td>37.0</td><td>26.5</td><td>28.7</td></tr>
-                        <tr><td class="method-name">ViNT*</td><td>45.6</td><td>66.2</td><td>39.5</td><td>31.4</td><td>33.8</td></tr>
-                        <tr><td class="method-name">NoMaD*</td><td>41.1</td><td>60.5</td><td>35.4</td><td>29.5</td><td>31.6</td></tr>
-                        <tr><td class="method-name">CityWalker</td><td>47.8</td><td>64.7</td><td>44.7</td><td>36.1</td><td>36.6</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">88.3</td><td class="best">92.1</td><td class="best">79.2</td><td class="best">85.1</td><td class="best">85.4</td></tr>
+                        <tr><td class="method-name">GNM</td><td>26.7</td><td>30.8</td><td>22.5</td><td>26.6</td><td>30.6</td><td>22.5</td></tr>
+                        <tr><td class="method-name">ViNT</td><td>27.9</td><td>32.5</td><td>23.3</td><td>27.9</td><td>32.4</td><td>23.3</td></tr>
+                        <tr><td class="method-name">NoMaD</td><td>20.0</td><td>20.8</td><td>19.2</td><td>19.6</td><td>20.5</td><td>18.6</td></tr>
+                        <tr><td class="method-name">CityWalker</td><td>21.7</td><td>23.3</td><td>20.0</td><td>21.6</td><td>23.3</td><td>19.9</td></tr>
+                        <tr><td class="method-name">SocialNav</td><td>42.5</td><td>46.7</td><td>38.3</td><td>42.5</td><td>46.7</td><td>38.3</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>89.6</td><td>91.7</td><td>87.5</td><td>85.6</td><td>87.5</td><td>83.7</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">95.4</td><td class="best">95.0</td><td class="best">95.8</td><td class="best">93.7</td><td class="best">93.3</td><td class="best">94.2</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>Closed-loop point-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
 
         <!-- Object-Goal -->
         <div class="benchmark-panel" id="objectgoal">
@@ -2522,33 +2291,22 @@
                     <thead>
                         <tr>
                             <th>Method</th>
-                            <th colspan="2" style="border-right: 1px solid var(--border-color);">Val-Seen</th>
-                            <th colspan="2" style="border-right: 1px solid var(--border-color);">Val-Seen-Synonyms</th>
-                            <th colspan="2">Val-Unseen</th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th>SR↑</th>
-                            <th style="border-right: 1px solid var(--border-color);">SPL↑</th>
-                            <th>SR↑</th>
-                            <th style="border-right: 1px solid var(--border-color);">SPL↑</th>
                             <th>SR↑</th>
                             <th>SPL↑</th>
+                            <th>DTG↓</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="method-name">DAgRL+OD</td><td>38.5</td><td>21.1</td><td>39.0</td><td>21.4</td><td>37.1</td><td>19.8</td></tr>
-                        <tr><td class="method-name">Uni-NaVid</td><td>41.3</td><td>21.1</td><td>43.9</td><td>21.8</td><td>39.5</td><td>19.8</td></tr>
-                        <tr><td class="method-name">MTU3D</td><td>55.0</td><td>23.6</td><td>45.0</td><td>14.7</td><td>40.8</td><td>12.1</td></tr>
-                        <tr><td class="method-name">NavFoM (Four views)</td><td>40.1</td><td>27.1</td><td>45.4</td><td>32.6</td><td>45.2</td><td class="best">31.9</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">55.3</td><td class="best">32.1</td><td class="best">55.4</td><td class="best">33.2</td><td class="best">54.0</td><td style="color: var(--text-secondary); font-weight: 400;">30.5</td></tr>
+                        <tr><td class="method-name">StreamVLN</td><td>39.7</td><td>15.8</td><td>2.368</td></tr>
+                        <tr><td class="method-name">NaVILA</td><td>55.4</td><td>26.1</td><td>1.811</td></tr>
+                        <tr><td class="method-name">InternVLA-N1 (S2 only)<td>58.5</td><td>30.0</td><td>1.441</td></tr>
+                        <tr><td class="method-name">Uni-NaVILA</td><td>68.7</td><td>34.5</td><td>1.495</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>73.2</td><td>35.4</td><td>1.442</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">84.9</td><td class="best">51.8</td><td class="best">0.822</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>Object-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
 
         <!-- Instruction-Following: R2R-CE -->
         <div class="benchmark-panel" id="instruction-r2r">
@@ -2564,18 +2322,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr><td class="method-name">Uni-NaVILA</td><td>5.58</td><td>53.5</td><td>47.0</td><td>42.7</td></tr>
                         <tr><td class="method-name">NaVILA</td><td>5.22</td><td>62.5</td><td>54.0</td><td>49.0</td></tr>
                         <tr><td class="method-name">StreamVLN</td><td>4.98</td><td>64.2</td><td>56.9</td><td>51.9</td></tr>
-                        <tr><td class="method-name">InternVLA-N1 (S1+S2)</td><td>4.83</td><td>63.3</td><td>58.2</td><td>54.0</td></tr>
-                        <tr><td class="method-name">NavFoM (Four views)</td><td>4.61</td><td class="best">72.1</td><td>61.7</td><td>55.3</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">3.78</td><td style="color: var(--text-secondary); font-weight: 400;">70.8</td><td class="best">66.4</td><td class="best">63.9</td></tr>
+                        <tr><td class="method-name">CorrectNav</td><td>4.24</td><td>67.5</td><td>65.1</td><td>62.3</td></tr>
+                        <tr><td class="method-name">NavFoM</td><td>4.61</td><td>72.1</td><td>61.7</td><td>55.3</td></tr>
+                        <tr><td class="method-name">Qwen-VLA</td><td>5.10</td><td>69.0</td><td>57.3</td><td>51.2</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>3.80</td><td>70.8</td><td>66.4</td><td>63.9</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">3.32</td><td class="best">75.2</td><td class="best">70.9</td><td class="best">67.5</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>Instruction-following (R2R) results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
 
         <!-- Instruction-Following: RxR-CE -->
         <div class="benchmark-panel" id="instruction-rxr">
@@ -2590,18 +2348,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr><td class="method-name">Uni-NaVILA</td><td>6.24</td><td>48.7</td><td>40.9</td></tr>
                         <tr><td class="method-name">NaVILA</td><td>6.77</td><td>49.3</td><td>44.0</td></tr>
                         <tr><td class="method-name">StreamVLN</td><td>6.22</td><td>52.9</td><td>46.0</td></tr>
-                        <tr><td class="method-name">InternVLA-N1 (S1+S2)</td><td>5.91</td><td>53.5</td><td>46.1</td></tr>
-                        <tr><td class="method-name">NavFoM (Four views)</td><td>4.74</td><td>64.4</td><td>56.2</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">3.83</td><td class="best">69.3</td><td class="best">60.0</td></tr>
+                        <tr><td class="method-name">CorrectNav<td>4.09</td><td>69.3</td><td>63.3</td></tr>
+                        <tr><td class="method-name">NavFoM</td><td>4.74</td><td>64.4</td><td>56.2</td></tr>
+                        <tr><td class="method-name">NavForesee</td><td>4.20</td><td>66.3</td><td>53.2</td></tr>
+                        <tr><td class="method-name">Qwen-VLA</td><td>5.80</td><td>59.6</td><td>47.8</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>3.83</td><td>69.3</td><td>60.0</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">3.13</td><td class="best">73.9</td><td class="best">63.9</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>Instruction-following (RxR) results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
 
         <!-- POI-Goal -->
         <div class="benchmark-panel" id="poi">
@@ -2610,26 +2369,21 @@
                     <thead>
                         <tr>
                             <th>Method</th>
-                            <th>SR (0.1m)↑</th>
-                            <th>SR (0.2m)↑</th>
-                            <th>SR (0.3m)↑</th>
-                            <th>TR (mean)↓</th>
-                            <th>TR (best)↓</th>
-                            <th>TR (worst)↓</th>
+                            <th>SR↑</th>
+                            <th>SPL↑</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="method-name">NoMaD</td><td>4.13</td><td>15.07</td><td>29.20</td><td>31.35</td><td>5.45</td><td>85.91</td></tr>
-                        <tr><td class="method-name">CityWalker</td><td>13.79</td><td>41.02</td><td>65.96</td><td>15.58</td><td>0.76</td><td>56.47</td></tr>
-                        <tr><td class="method-name">OmniNav</td><td>18.78</td><td>46.99</td><td>72.39</td><td>14.16</td><td>0.99</td><td>53.79</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">32.14</td><td class="best">71.50</td><td class="best">88.68</td><td class="best">9.84</td><td class="best">0.44</td><td class="best">51.38</td></tr>
+                        <tr><td class="method-name">ViNT</td><td>19.0</td><td>18.2</td></tr>
+                        <tr><td class="method-name">OmniNav (vanilla)</td><td>23.9</td><td>22.4</td></tr>
+                        <tr><td class="method-name">OmniNav (BridgeNav training)</td><td>34.4</td><td>31.5</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>20.9</td><td>17.7</td></tr>
+                        <tr><td class="method-name">POINav</td><td>42.3</td><td>40.3</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">77.3</td><td class="best">72.6</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>POI-goal results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
 
         <!-- Person-Following -->
         <div class="benchmark-panel" id="person">
@@ -2650,426 +2404,97 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="method-name">TrackVLA</td><td>85.1</td><td>78.6</td><td class="best">1.65</td><td>57.6</td><td>63.2</td><td>5.80</td><td>50.2</td><td>63.7</td><td>17.1</td></tr>
+                        <tr><td class="method-name">IBVS</td><td>42.9</td><td>56.2</td><td>3.75</td><td>10.6</td><td>28.4</td><td>6.14</td><td>15.2</td><td>39.5</td><td class="best">4.90</td></tr>
+                        <tr><td class="method-name">Uni-NaVid</td><td>25.7</td><td>39.5</td><td>41.9</td><td>11.3</td><td>27.4</td><td>43.5</td><td>8.26</td><td>28.6</td><td>43.7</td></tr>
                         <tr><td class="method-name">NavFoM</td><td>85.0</td><td>80.5</td><td>-</td><td>61.4</td><td>68.2</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-                        <tr><td class="method-name">TrackVLA++</td><td>86.0</td><td>81.0</td><td>2.10</td><td>66.5</td><td>68.8</td><td class="best">4.71</td><td>51.2</td><td>63.4</td><td>15.9</td></tr>
-                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">86.9</td><td class="best">87.6</td><td style="color: var(--text-secondary); font-weight: 400;">8.54</td><td class="best">66.7</td><td class="best">75.4</td><td style="color: var(--text-secondary); font-weight: 400;">11.6</td><td class="best">67.3</td><td class="best">79.5</td><td class="best">7.05</td></tr>
+                        <tr><td class="method-name">TrackVLA++</td><td>86.0</td><td>81.0</td><td class="best">2.10</td><td>66.5</td><td>68.8</td><td class="best">4.71</td><td>51.2</td><td>63.4</td><td>15.9</td></tr>
+                        <tr><td class="method-name">Qwen-RobotNav-4B</td><td>77.4</td><td class="best">90.0</td><td>6.40</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td class="method-name">ABot-N0</td><td>86.9</td><td>87.6</td><td>8.54</td><td>66.7</td><td>75.4</td><td>11.6</td><td>67.3</td><td>79.5</td><td>7.05</td></tr>
+                        <tr class="highlight-row"><td class="method-name">ABot-N1</td><td class="best">90.1</td><td style="color: var(--text-secondary); font-weight: 400;">89.8</td><td style="color: var(--text-secondary); font-weight: 400;">4.27</td><td class="best">67.4</td><td class="best">84.4</td><td style="color: var(--text-secondary); font-weight: 400;">17.9</td><td class="best">70.0</td><td class="best">87.8</td><td style="color: var(--text-secondary); font-weight: 400;">17.9</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="result-note">
-                <strong>Person-following results will be updated in the ABot-N1 technical report.</strong>
             </div>
-        </div>
-    </div>
-</section>
-
-<div class="glow-divider"></div>
-
-<!-- AGENTIC NAVIGATION SYSTEM (hidden: images missing) -->
-<!--
-<section class="section" id="agentic">
-    <div class="section-inner">
-        <div class="section-header reveal">
-            <div class="section-tag"><i class="fas fa-robot"></i> Agentic System</div>
-            <h2 class="section-title">Agentic Navigation System</h2>
-            <p class="section-desc">A deployable framework that augments ABot-N1 with planning, topological memory, and self-reflection for robust long-horizon real-world missions.</p>
-        </div>
-
-        <div class="agentic-layout">
-            <div class="figure-block reveal">
-                <img src="static/images/agentic.jpg" alt="Agentic Navigation System">
-                <div class="fig-caption">
-                    <strong>Agentic Navigation System Overview.</strong> The system integrates ABot-N1 with an agentic framework comprising Agentic Planner, Actor, short-term Episodic Memory, and long-term Topo-Memory to handle complex real-world navigation tasks.
-                </div>
-            </div>
-
-            <div class="figure-block reveal">
-                <img src="static/images/agent_sys.jpg" alt="Task Execution Pipeline">
-                <div class="fig-caption">
-                    <strong>Task Execution Pipeline.</strong> (1) Global Navigation employs Approaching (Point-Goal) to traverse known spaces using topological memory, (2) Local Navigation utilizes Reaching (Object-Goal/POI-Goal) for precise target discovery and Interaction (Instruction-Following, Person-Following) for dynamic engagement, and (3) Neural Controller executes low-level velocity-based motion control.
-                </div>
-            </div>
-
-            <div class="agentic-features reveal">
-                <div class="agentic-feature">
-                    <h4>🗺️ Map-as-Memory (Topo-Memory)</h4>
-                    <p>A hierarchical topological memory with 4 layers (Block, Road, Function, Object/POI) that enables cross-scale spatial knowledge deposition and dynamic updating — from residential interiors to urban environments.</p>
-                </div>
-                <div class="agentic-feature">
-                    <h4>🧭 Agentic Planner</h4>
-                    <p>Leverages VLM reasoning to decompose ambiguous user instructions into executable sub-tasks via Chain-of-Thought. Implements a "Coarse-to-Fine" strategy: Point-Goal for long-horizon approach, then Object/POI-Goal for precise local reaching.</p>
-                </div>
-                <div class="agentic-feature">
-                    <h4>🔄 Closed-loop Self-Reflection</h4>
-                    <p>A VLM-based Self-Reflector assesses sub-task completion. On failure, it diagnoses the cause and triggers re-planning — emulating human-like self-correction for robust long-horizon autonomy.</p>
-                </div>
-                <div class="agentic-feature">
-                    <h4>🎮 Neural Controller</h4>
-                    <p>A high-speed reactive layer operating at 10Hz+ on edge devices. Translates abstract VLA waypoints into precise velocity commands (v<sub>x</sub>, v<sub>y</sub>, v<sub>yaw</sub>) using LiDAR-based occupancy mapping.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="glow-divider"></div>
--->
-
-<!-- ============================================
-     HARDWARE / DEPLOYMENT
-     ============================================ -->
-<section class="section" id="deployment">
-    <div class="section-inner">
-        <div class="section-header reveal">
-            <div class="section-tag"><i class="fas fa-microchip"></i> Real-World Deployment</div>
-            <h2 class="section-title">From Model to Robot</h2>
-            <p class="section-desc">Real-world deployment details and hardware specifications for ABot-N1 will be shared soon.</p>
-        </div>
-
-        <div class="deploy-grid reveal">
-            <div class="deploy-specs">
-                <div class="spec-item">
-                    <div class="spec-icon"><i class="fas fa-paw"></i></div>
-                    <div>
-                        <h4>Robot Platform</h4>
-                        <p>Hardware platform details for ABot-N1 will be shared in the upcoming technical report.</p>
-                    </div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-icon"><i class="fas fa-camera"></i></div>
-                    <div>
-                        <h4>Vision System</h4>
-                        <p>Sensor configuration and field-of-view specifications will be shared in the upcoming technical report.</p>
-                    </div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-icon"><i class="fas fa-satellite-dish"></i></div>
-                    <div>
-                        <h4>Localization & Mapping</h4>
-                        <p>Localization and mapping setup details will be shared in the upcoming technical report.</p>
-                    </div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-icon"><i class="fas fa-bolt"></i></div>
-                    <div>
-                        <h4>Onboard Compute</h4>
-                        <p>Edge computing specifications and inference frequency will be shared in the upcoming technical report.</p>
-                    </div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-icon"><i class="fas fa-cloud"></i></div>
-                    <div>
-                        <h4>System Architecture</h4>
-                        <p>Deployment architecture details will be shared in the upcoming technical report.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="deploy-image">
-                <img src="static/images/hardware.jpg" alt="Hardware Platform">
-            </div>
-        </div>
     </div>
 </section>
 
 <div class="glow-divider"></div>
 
 <!-- ============================================
-     VIDEO DEMOS
+     DEPLOYMENT VISUALIZATION
      ============================================ -->
-<section class="section video-demo-section" id="video-demos">
-    <div class="section-inner">
-        <div class="section-header reveal">
-            <div class="section-tag"><i class="fas fa-video"></i> Video Demonstrations</div>
-            <h2 class="section-title">Real-World Demo Videos</h2>
-            <p class="section-desc">Demo videos showcasing ABot-N1 capabilities will be added once available.</p>
-        </div>
-
-        <div class="video-pillars">
-
-            <!-- Pillar 1: Long-Horizon Agentic Missions -->
-            <div class="video-pillar reveal">
-                <div class="video-pillar-header">
-                    <div class="video-pillar-icon"><i class="fas fa-route"></i></div>
-                    <div class="video-pillar-meta">
-                        <h3>Long-Horizon Agentic Missions</h3>
-                        <p>Multi-stage missions with planning, re-planning, and cross-environment transitions</p>
-                    </div>
-                </div>
-                <div class="video-pillar-body">
-                    <div class="video-grid vcols-2">
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/TZl9OfadPJg/hqdefault.jpg');" onclick="loadYouTube(this, 'TZl9OfadPJg')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">OUTDOOR</span>
-                                Outdoor Long-Horizon Mission
-                            </div>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/pm3SP6HgwkI/hqdefault.jpg');" onclick="loadYouTube(this, 'pm3SP6HgwkI')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">INDOOR</span>
-                                Indoor Long-Horizon Mission
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pillar 2: Real-World Applications -->
-            <div class="video-pillar reveal">
-                <div class="video-pillar-header">
-                    <div class="video-pillar-icon"><i class="fas fa-robot"></i></div>
-                    <div class="video-pillar-meta">
-                        <h3>Real-World Applications</h3>
-                        <p>Practical application scenarios: AI Companion, Guide Dog Assistance — powered by ABot-N1</p>
-                    </div>
-                </div>
-                <div class="video-pillar-body">
-                    <div class="video-grid vcols-2">
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/7UEisQYBF9k/hqdefault.jpg');" onclick="loadYouTube(this, '7UEisQYBF9k')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">COMPANION</span>
-                                Interactive Companion
-                            </div>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/7DIoE-g671g/hqdefault.jpg');" onclick="loadYouTube(this, '7DIoE-g671g')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">GUIDE DOG</span>
-                                Guide Dog Assistance
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pillar 3: Single-Task Capabilities -->
-            <div class="video-pillar reveal">
-                <div class="video-pillar-header">
-                    <div class="video-pillar-icon"><i class="fas fa-crosshairs"></i></div>
-                    <div class="video-pillar-meta">
-                        <h3>Single-Task Capabilities</h3>
-                        <p>Atomic navigation skills: Point-Goal, POI-Goal, Object-Goal, Instruction-Following, Person-Following</p>
-                    </div>
-                </div>
-                <div class="video-pillar-body">
-                    <div class="video-grid vcols-3">
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/--pVvU9BOX4/hqdefault.jpg');" onclick="loadYouTube(this, '--pVvU9BOX4')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">POINT-GOAL</span>
-                                Point-Goal Navigation
-                            </div>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/6YAANa1Oico/hqdefault.jpg');" onclick="loadYouTube(this, '6YAANa1Oico')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">POI-GOAL</span>
-                                POI-Goal Navigation
-                            </div>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/tfv4L3knYlk/hqdefault.jpg');" onclick="loadYouTube(this, 'tfv4L3knYlk')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">OBJ-GOAL</span>
-                                Object-Goal Navigation
-                            </div>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/WdNuaxVtb3A/hqdefault.jpg');" onclick="loadYouTube(this, 'WdNuaxVtb3A')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">INS-FOLLOW</span>
-                                Instruction-Following
-                            </div>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-embed-wrap">
-                                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/dZftcxjN9f8/hqdefault.jpg');" onclick="loadYouTube(this, 'dZftcxjN9f8')">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                </div>
-                            </div>
-                            <div class="video-label">
-                                <span class="video-tag">PERSON-FOLLOW</span>
-                                Person-Following
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<div class="glow-divider"></div>
-
-<!-- DEPLOYMENT VISUALIZATION (hidden: images missing) -->
-<!--
 <section class="section" id="visualization">
     <div class="section-inner">
         <div class="section-header reveal">
             <div class="section-tag"><i class="fas fa-images"></i> Visualization</div>
             <h2 class="section-title">Deployment Visualization</h2>
-            <p class="section-desc">Visualization gallery for ABot-N1 will be updated with real-world deployment examples.</p>
+            <p class="section-desc">Real-world deployment experiments across five core navigation tasks, demonstrating ABot-N1's execution precision and robustness in diverse environments.</p>
         </div>
 
         <div class="vis-pillars">
 
             <div class="vis-pillar reveal">
-                <div class="vis-pillar-header">
-                    <div class="vis-pillar-icon"><i class="fas fa-crosshairs"></i></div>
-                    <div class="vis-pillar-meta">
-                        <h3>Short-Horizon Navigation Tasks</h3>
-                        <p>Single-skill atomic tasks: Object-Goal, Instruction-Following, Point-Goal, POI-Goal, Person-Following</p>
-                    </div>
+                <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="static/images/point_infer.jpg" alt="Point-Goal Deployment Visualization">
                 </div>
                 <div class="vis-pillar-body">
-                    <div class="vis-grid cols-2">
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/obj_goal.jpg" alt="Object-Goal Visualization">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">OBJ-GOAL</span>
-                                Object-Goal navigation: find target objects in real environments
-                            </div>
-                        </div>
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/ins_goal.jpg" alt="Instruction-Following Visualization">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">INS-FOLLOW</span>
-                                Instruction-Following: execute natural language navigation commands
-                            </div>
-                        </div>
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/point_goal.jpg" alt="Point-Goal Visualization">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">POINT-GOAL</span>
-                                Point-Goal navigation: reach precise metric coordinates in real environments
-                            </div>
-                        </div>
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/poi_goal.jpg" alt="POI-Goal Visualization">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">POI-GOAL</span>
-                                POI-Goal navigation: navigate to Points of Interest entrances
-                            </div>
-                        </div>
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/person_follow.jpg" alt="Person-Following Visualization">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">PERSON-FOLLOW</span>
-                                Person-Following: real-time tracking of dynamic human targets
-                            </div>
-                        </div>
+                    <div class="vis-pillar-header">
+                        <div class="vis-pillar-icon"><i class="fas fa-crosshairs"></i></div>
+                        <h3>Point-Goal Navigation</h3>
                     </div>
+                    <p>Four segments of a long-range outdoor episode showcasing obstacle avoidance on narrow roads, construction area detour, correct fork selection, and traffic-light-compliant crosswalk traversal.</p>
                 </div>
             </div>
 
             <div class="vis-pillar reveal">
-                <div class="vis-pillar-header">
-                    <div class="vis-pillar-icon"><i class="fas fa-route"></i></div>
-                    <div class="vis-pillar-meta">
-                        <h3>Long-Horizon Agentic Navigation</h3>
-                        <p>Multi-stage missions requiring planning, re-planning, and cross-environment transitions</p>
-                    </div>
+                <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="static/images/poi_infer.jpg" alt="POI-Goal Deployment Visualization">
                 </div>
                 <div class="vis-pillar-body">
-                    <div class="vis-grid cols-3">
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/indoor.jpg" alt="Indoor Long-Horizon Navigation">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">INDOOR</span>
-                                Indoor agentic mission with multi-skill orchestration
-                            </div>
-                        </div>
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/outdoor.jpg" alt="Outdoor Long-Horizon Navigation 1">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">OUTDOOR</span>
-                                Outdoor long-horizon navigation to the closest park
-                            </div>
-                        </div>
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/outdoor2.jpg" alt="Outdoor Long-Horizon Navigation 2">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">CROSS-ENV</span>
-                                Cross-environment: outdoor-to-indoor transition mission
-                            </div>
-                        </div>
+                    <div class="vis-pillar-header">
+                        <div class="vis-pillar-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>POI-Goal Navigation</h3>
                     </div>
+                    <p>Locating a Lanzhou noodle restaurant (large viewing angle), McDonald's (obstacle avoidance en route), and Luckin Coffee (slope navigation and staircase avoidance).</p>
                 </div>
             </div>
 
             <div class="vis-pillar reveal">
-                <div class="vis-pillar-header">
-                    <div class="vis-pillar-icon"><i class="fas fa-robot"></i></div>
-                    <div class="vis-pillar-meta">
-                        <h3>Real-World Applications</h3>
-                        <p>Smart Follow & Load Carry, Guiding Assistance, AI Companion — powered by ABot-N1</p>
-                    </div>
+                <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="static/images/obj_infer.jpg" alt="Object-Goal Deployment Visualization">
                 </div>
                 <div class="vis-pillar-body">
-                    <div class="vis-grid cols-1" style="grid-template-columns: 1fr;">
-                        <div class="vis-item">
-                            <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
-                                <img src="static/images/vis/application.jpg" alt="Real-World Applications">
-                            </div>
-                            <div class="vis-label">
-                                <span class="vis-tag">APPLICATIONS</span>
-                                Three application scenarios: Smart Follow & Load Carry, Guiding Assistance, and AI Companion with VQA capabilities
-                            </div>
-                        </div>
+                    <div class="vis-pillar-header">
+                        <div class="vis-pillar-icon"><i class="fas fa-search"></i></div>
+                        <h3>Object-Goal Navigation</h3>
                     </div>
+                    <p>Three cases——outdoor bench under dappled tree shade at long range, indoor chair with a water bottle (spatial reasoning), and partially occluded fire extinguisher——with CoT, affordance, and target pixel overlays.</p>
+                </div>
+            </div>
+
+            <div class="vis-pillar reveal">
+                <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="static/images/ins_infer.jpg" alt="Instruction-Following Deployment Visualization">
+                </div>
+                <div class="vis-pillar-body">
+                    <div class="vis-pillar-header">
+                        <div class="vis-pillar-icon"><i class="fas fa-route"></i></div>
+                        <h3>Instruction-Following</h3>
+                    </div>
+                    <p>Slow-system reasoning at four critical moments——stair descent, gym entry, gym exit, and bar approach——with CoT, affordance pixel, and target pixel visualizations.</p>
+                </div>
+            </div>
+
+            <div class="vis-pillar reveal">
+                <div class="vis-img-wrap" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="static/images/person_infer.jpg" alt="Person-Following Deployment Visualization">
+                </div>
+                <div class="vis-pillar-body">
+                    <div class="vis-pillar-header">
+                        <div class="vis-pillar-icon"><i class="fas fa-walking"></i></div>
+                        <h3>Person-Following</h3>
+                    </div>
+                    <p>Outdoor tracking under pedestrian distraction, stair-climbing following, and indoor corner-rounding with temporary occlusion.</p>
                 </div>
             </div>
 
@@ -3078,7 +2503,6 @@
 </section>
 
 <div class="glow-divider"></div>
--->
 
 <!-- ============================================
      BIBTEX
@@ -3307,15 +2731,6 @@ document.querySelectorAll('.benchmark-tab').forEach(tab => {
 });
 
 // ============================================
-// TRAJECTORY SCROLL
-// ============================================
-function scrollTraj(direction) {
-    const container = document.getElementById('trajScroll');
-    const cardWidth = 300; // card width + gap
-    container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-}
-
-// ============================================
 // LIGHTBOX
 // ============================================
 function openLightbox(imgEl) {
@@ -3337,55 +2752,8 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
 });
 
-// ============================================
-// VIDEO LIGHTBOX
-// ============================================
-function loadYouTube(thumbEl, videoId) {
-    const wrap = thumbEl.parentElement;
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-    iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
-    thumbEl.style.opacity = '0';
-    thumbEl.style.pointerEvents = 'none';
-    wrap.appendChild(iframe);
-}
-
-// Try upgrading video thumbnails: hqdefault → maxresdefault → sddefault fallback
-document.querySelectorAll('.video-thumb').forEach(thumb => {
-    const currentBg = thumb.style.backgroundImage;
-    if (currentBg && currentBg.includes('hqdefault.jpg')) {
-        const extractUrl = s => s.replace(/url\(['"]?|['"]?\)/g, '');
-        const maxUrl = currentBg.replace('hqdefault.jpg', 'maxresdefault.jpg');
-        const sdUrl  = currentBg.replace('hqdefault.jpg', 'sddefault.jpg');
-        // Try maxresdefault first
-        const maxImg = new Image();
-        maxImg.onload = function() {
-            if (this.naturalWidth > 200) {
-                thumb.style.backgroundImage = maxUrl;
-            } else {
-                // maxresdefault is a placeholder, try sddefault
-                trySD();
-            }
-        };
-        maxImg.onerror = trySD;
-        maxImg.src = extractUrl(maxUrl);
-
-        function trySD() {
-            const sdImg = new Image();
-            sdImg.onload = function() {
-                if (this.naturalWidth > 200) {
-                    thumb.style.backgroundImage = sdUrl;
-                }
-            };
-            sdImg.src = extractUrl(sdUrl);
-        }
-    }
-});
-
 // Also enable lightbox for all figure-block images
-document.querySelectorAll('.figure-block img, .gallery-card img, .hero-image-wrapper img').forEach(img => {
+document.querySelectorAll('.figure-block img, .hero-image-wrapper img').forEach(img => {
     img.addEventListener('click', () => openLightbox(img));
 });
 
@@ -3422,23 +2790,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// INTRO VIDEO AUTO-PLAY ON VISIBILITY
+// SPLASH VIDEO - play on load, fade out on end
 // ============================================
 (function() {
-    const introVideo = document.getElementById('intro-video');
-    if (!introVideo) return;
+    const overlay = document.getElementById('splashOverlay');
+    const video = document.getElementById('splashVideo');
+    const skipBtn = document.getElementById('splashSkip');
+    if (!overlay || !video) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                introVideo.play().catch(() => {});
-            } else {
-                introVideo.pause();
-            }
-        });
-    }, { threshold: 0.25 });
+    let dismissed = false;
 
-    observer.observe(introVideo);
+    function dismissSplash() {
+        if (dismissed) return;
+        dismissed = true;
+        overlay.classList.add('fade-out');
+        setTimeout(() => {
+            overlay.remove();
+        }, 1200);
+    }
+
+    // Dismiss when video ends
+    video.addEventListener('ended', dismissSplash);
+
+    // Dismiss on skip button click
+    skipBtn.addEventListener('click', dismissSplash);
+
+    // Fallback: dismiss after 8s even if video fails
+    setTimeout(dismissSplash, 8000);
+
+    // Try to play (handles browsers that block autoplay)
+    video.play().catch(() => {
+        // If autoplay is blocked, dismiss immediately
+        dismissSplash();
+    });
 })();
 </script>
 

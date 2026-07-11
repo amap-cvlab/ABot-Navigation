@@ -286,6 +286,141 @@
             transform: translateX(4px);
         }
 
+        .more-research {
+            width: 100%;
+            max-width: 960px;
+            margin-top: 80px;
+        }
+
+        .more-research-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .more-research-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+        }
+
+        .research-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 18px;
+        }
+
+        .research-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .research-card {
+            flex: 0 0 calc((100% - 40px) / 3);
+            padding: 26px 24px;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .research-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(100, 100, 180, 0.35);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 30px rgba(0, 212, 255, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .research-card .venue {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .research-card .title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .research-card .desc {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            flex-grow: 1;
+        }
+
+        .research-card .arrow {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover .arrow {
+            color: var(--accent-cyan);
+            transform: translateX(5px);
+        }
+
+        .carousel-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+            border-color: rgba(100, 100, 180, 0.4);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent-cyan);
+            width: 24px;
+            border-radius: 4px;
+        }
+
         @media (max-width: 768px) {
             .landing {
                 padding: 60px 24px;
@@ -318,6 +453,22 @@
             .model-card .title {
                 font-size: 1.8rem;
             }
+
+            .more-research {
+                margin-top: 60px;
+            }
+
+            .research-card {
+                flex: 0 0 100%;
+            }
+
+            .research-track {
+                gap: 0;
+            }
+
+            .more-research-header {
+                gap: 16px;
+            }
         }
     </style>
 </head>
@@ -345,7 +496,6 @@
                 </div>
                 <span class="desc">A unified VLA foundation model achieving grand unification across five core embodied navigation tasks.</span>
                 <div class="highlights">
-                    <div class="highlight"><i class="fas fa-scroll"></i> Technical Report on arXiv</div>
                     <div class="highlight"><i class="fas fa-trophy"></i> SOTA on 7 Benchmarks</div>
                     <div class="highlight"><i class="fas fa-database"></i> 16.9M Expert Trajectories</div>
                     <div class="highlight"><i class="fas fa-robot"></i> Real-World Go2 Deployment</div>
@@ -356,17 +506,83 @@
             <a href="ABot-N1/index.html" class="model-card n1">
                 <div class="card-header">
                     <span class="title">ABot-N1</span>
-                    <span class="status-badge">Coming Soon</span>
+                    <span class="status-badge">Available</span>
                 </div>
                 <span class="desc">The next-generation navigation model building upon ABot-N0 with enhanced generalization and efficiency.</span>
                 <div class="highlights">
-                    <div class="highlight"><i class="fas fa-file-alt"></i> Technical Report in Preparation</div>
                     <div class="highlight"><i class="fas fa-brain"></i> Improved Reasoning & Action</div>
                     <div class="highlight"><i class="fas fa-chart-line"></i> Enhanced Benchmark Results</div>
-                    <div class="highlight"><i class="fas fa-cogs"></i> Advanced Deployment Pipeline</div>
+                    <div class="highlight"><i class="fas fa-cogs"></i> Comprehensive Benchmark Release</div>
                 </div>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
+        </div>
+
+        <div class="more-research">
+            <div class="more-research-header">
+                <button class="carousel-btn prev" aria-label="Previous research"><i class="fas fa-chevron-left"></i></button>
+                <div class="more-research-title">More Research</div>
+                <button class="carousel-btn next" aria-label="Next research"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="research-carousel">
+                <div class="research-track">
+                    <a href="https://amap-eai.github.io/SocialNav/" target="_blank" class="research-card">
+                        <span class="venue">CVPR 2026</span>
+                        <span class="title">SocialNav</span>
+                        <span class="desc">Socially compliant navigation among humans in crowded and dynamic environments.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://arxiv.org/abs/2512.01550" target="_blank" class="research-card">
+                        <span class="venue">CVPR 2026</span>
+                        <span class="title">NavForesee</span>
+                        <span class="desc">Foreseeing future scene layouts to enable long-horizon navigation planning.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://fantasy-amap.github.io/fantasy-vln/" target="_blank" class="research-card">
+                        <span class="venue">CVPR 2026</span>
+                        <span class="title">FantasyVLN</span>
+                        <span class="desc">Vision-language navigation in imaginary and procedurally generated environments.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://astra-amap.github.io/AstraNav-Memory.github.io/" target="_blank" class="research-card">
+                        <span class="venue">CVPR 2026</span>
+                        <span class="title">AstraNav-Memory</span>
+                        <span class="desc">Memory-augmented navigation with long-term spatial and semantic recall.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://ce-nav.github.io/" target="_blank" class="research-card">
+                        <span class="venue">ICLR 2026</span>
+                        <span class="title">CE-Nav</span>
+                        <span class="desc">Counterfactual exploration for robust and explainable embodied navigation.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://astra-amap.github.io/omninav.github.io/" target="_blank" class="research-card">
+                        <span class="venue">ICLR 2026</span>
+                        <span class="title">OmniNav</span>
+                        <span class="desc">Omnidirectional perception for open-vocabulary navigation in the wild.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://miv-xjtu.github.io/JanusVLN.github.io/" target="_blank" class="research-card">
+                        <span class="venue">ICLR 2026</span>
+                        <span class="title">JanusVLN</span>
+                        <span class="desc">Unified vision-language navigation with all-weather scene understanding.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://arxiv.org/abs/2604.24086" target="_blank" class="research-card">
+                        <span class="venue">IROS 2026</span>
+                        <span class="title">AsyncShield</span>
+                        <span class="desc">Safety-critical asynchronous shielding for embodied navigation policies.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://arxiv.org/abs/2604.19034" target="_blank" class="research-card">
+                        <span class="venue">IROS 2026</span>
+                        <span class="title">Explore Like Humans</span>
+                        <span class="desc">Human-like exploration strategies for efficient open-world navigation.</span>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-dots"></div>
         </div>
     </main>
 
@@ -445,6 +661,48 @@
         resizeCanvas();
         initParticles();
         animateParticles();
+
+        // Research carousel - simple 3-card slider with loop
+        const track = document.querySelector('.research-track');
+        const cards = document.querySelectorAll('.research-card');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const dotsContainer = document.querySelector('.carousel-dots');
+
+        if (track && cards.length > 0 && prevBtn && nextBtn && dotsContainer) {
+            const cardsPerSlide = window.innerWidth <= 768 ? 1 : 3;
+            const totalSlides = Math.ceil(cards.length / cardsPerSlide);
+            let currentSlide = 0;
+
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+                    dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function goToSlide(slide) {
+                currentSlide = (slide + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+            createDots();
+            updateCarousel();
+        }
     </script>
 </body>
 </html>
