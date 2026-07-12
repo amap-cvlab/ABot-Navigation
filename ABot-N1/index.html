@@ -2131,6 +2131,11 @@
             <p class="section-desc">ABot-N1 employs a progressive post-training pipeline that transforms the pre-trained foundation into a socially compliant, generalizable navigator. Training dynamics and generality analysis further validate the effectiveness of each stage.</p>
         </div>
 
+        <!-- Training data pipeline overview -->
+        <div class="figure-block reveal" style="margin: 40px auto 0; max-width: 1000px;">
+            <img src="static/images/data_recipe.jpg" alt="Training Data Pipeline and Composition">
+        </div>
+
         <div class="training-timeline reveal">
             <div class="training-phase">
                 <div class="phase-number">Stage 1 · Pre-Training</div>
@@ -2149,11 +2154,6 @@
                 <p>The reward design is task-agnostic by construction: <em>R</em><sub>format</sub> depends only on the output schema, and <em>R</em><sub>safety</sub> depends only on scene geometry and traversability rules. Extending ABot-N1 to instruction-following, object-goal, or person-following requires only redefining <em>R</em><sub>target</sub>, and we validate the pipeline at scale on 0.5M point-goal episodes.</p>
 
             </div>
-        </div>
-
-        <!-- Training data pipeline overview -->
-        <div class="figure-block reveal" style="margin-bottom: 40px;">
-            <img src="static/images/data_recipe.jpg" alt="Training Data Pipeline and Composition">
         </div>
     </div>
 </section>
