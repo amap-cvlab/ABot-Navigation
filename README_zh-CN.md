@@ -98,9 +98,9 @@ ABotN-PointBench 和 ABotN-POIBench 为本仓库新引入的基准，提供完�
 
 ```
 ┌──────────────────────────┐         ┌──────────────────────────────┐
-│  3DGS 渲染服务             │  HTTP   │  评测环境                      │
+│  3DGS 渲染服务            │  HTTP   │  评测环境                      │
 │  Python 3.8, CUDA 11     │◄───────►│  pip install abotn-bench     │
-│  render_server/           │         │  import abotn_evaluator      │
+│  render_server/          │         │  import abotn_evaluator      │
 └──────────────────────────┘         └──────────────────────────────┘
 ```
 
