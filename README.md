@@ -100,7 +100,7 @@ See [Getting Started](docs/getting-started.md) for download and setup instructio
 ┌──────────────────────────┐         ┌──────────────────────────────┐
 │  3DGS Render Server      │  HTTP   │  Evaluation Environment      │
 │  Python 3.8, CUDA 11     │◄───────►│  pip install abotn-bench     │
-│  render_server/           │         │  import abotn_evaluator      │
+│  render_server/          │         │  import abotn_evaluator      │
 └──────────────────────────┘         └──────────────────────────────┘
 ```
 
