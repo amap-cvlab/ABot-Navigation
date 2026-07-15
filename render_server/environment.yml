@@ -1,0 +1,17 @@
+name: abotn_render
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.8
+  - numpy
+  - scipy
+  - pillow
+  - tqdm
+  - plyfile
+  - e3nn>=0.5
+  - requests
+  - pip:
+    - opencv-python
+    - flask
+    - flask-cors

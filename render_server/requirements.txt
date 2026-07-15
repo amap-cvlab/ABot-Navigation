@@ -1,0 +1,10 @@
+plyfile
+tqdm
+numpy
+scipy
+opencv-python
+pillow
+requests
+flask
+flask-cors
+e3nn==0.5.3
