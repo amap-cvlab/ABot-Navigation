@@ -164,14 +164,14 @@ For POI-Goal, use `BasePoiGoalAgent` — the observation adds a `poi_name: str` 
 If you find ABotN-Bench useful in your research, please cite the [technical report](https://arxiv.org/abs/2607.10383):
 
 ```bibtex
-@misc{gong2026abotn1,
-  title={ABot-N1: Toward a General Visual Language Navigation Foundation Model},
-  author={Ruiyan Gong and Yingnan Guo and Junjun Hu and Jintao Kong and Xiaoxu Leng and Tianlun Li and Weize Li and Fei Liu and Zhicheng Liu and Jia Lu and Minghua Luo and Chenlin Ming and Yanfen Shen and Jiyue Tao and Zhengbo Wang and Mingyang Yin and Minqi Gu and Zihao Guan and Wei Guo and Guoqing Liu and Huachong Pang and Menglin Yang and Zeqian Ye and Xiaoxiao Geng and Zhining Gu and Honglin Han and Di Jing and Hongyu Pan and Mingchao Sun and Kuan Yang and Jianfang Zhang and Yanghong Chen and Ye He and Wei Mei and Jiahao Shi and Xiangpo Yang and Yanqing Zhu and Zedong Chu and Xiaolong Wu and Mu Xu},
-  year={2026},
-  eprint={2607.10383},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV},
-  url={https://arxiv.org/abs/2607.10383},
+@misc{gong2026abotn1generalvisuallanguage,
+      title={ABot-N1: Toward a General Visual Language Navigation Foundation Model}, 
+      author={Ruiyan Gong and Yingnan Guo and Junjun Hu and Jintao Kong and Xiaoxu Leng and Tianlun Li and Weize Li and Fei Liu and Zhicheng Liu and Jia Lu and Minghua Luo and Chenlin Ming and Yanfen Shen and Jiyue Tao and Zhengbo Wang and Mingyang Yin and Minqi Gu and Zihao Guan and Wei Guo and Guoqing Liu and Huachong Pang and Menglin Yang and Zeqian Ye and Xiaoxiao Geng and Zhining Gu and Honglin Han and Di Jing and Hongyu Pan and Mingchao Sun and Kuan Yang and Jianfang Zhang and Yanghong Chen and Ye He and Wei Mei and Jiahao Shi and Xiangpo Yang and Yanqing Zhu and Yang Cai and Jingjing Ma and Shihui Su and Zixiao Tang and Linbo Zheng and Zedong Chu and Xiaolong Wu and Wenbin Tang and Mu Xu},
+      year={2026},
+      eprint={2607.10383},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2607.10383}, 
 }
 ```
 
