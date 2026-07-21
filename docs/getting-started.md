@@ -11,11 +11,7 @@
 
 ## 1. Install the Evaluator
 
-```bash
-pip install abotn-bench
-```
-
-Or from source:
+From source:
 
 ```bash
 git clone <repository_url>

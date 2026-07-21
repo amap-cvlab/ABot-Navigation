@@ -30,7 +30,7 @@ These protocol parameters are **fixed benchmark standards**. Changing them produ
 
 ## Prerequisites
 
-- Evaluator installed (`pip install abotn-bench`)
+- Evaluator installed (`abotn-bench`)
 - Render server running with `scripts/start_POIGoal_render_server.sh` (`RENDER_SCALE=1.5`)
 - ABotN-POIBench data downloaded
 

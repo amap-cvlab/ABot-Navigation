@@ -11,11 +11,7 @@
 
 ## 1. 安装评测框架
 
-```bash
-pip install abotn-bench
-```
-
-或从源码安装：
+从源码安装：
 
 ```bash
 git clone <仓库地址>

@@ -108,7 +108,8 @@ ABotN-PointBench 和 ABotN-POIBench 为本仓库新引入的基准，提供完�
 
 ```bash
 # 安装
-pip install abotn-bench
+git clone <仓库地址>
+cd <仓库目录名> && pip install -e .
 
 # 部署渲染服务（独立 conda 环境，需 CUDA 11）
 conda env create -f render_server/environment.yml

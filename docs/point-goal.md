@@ -17,7 +17,7 @@ These protocol parameters are **fixed benchmark standards**. Changing them produ
 
 ## Prerequisites
 
-- Evaluator installed (`pip install abotn-bench`)
+- Evaluator installed (`abotn-bench`)
 - Render server running (see [Getting Started](getting-started.md))
 - ABotN-PointBench data downloaded
 - Python 3.8+ with NumPy, SciPy, Pillow, tqdm, and PyYAML

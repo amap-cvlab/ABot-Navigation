@@ -108,7 +108,8 @@ See [Getting Started](docs/getting-started.md) for download and setup instructio
 
 ```bash
 # Install
-pip install abotn-bench
+git clone <repository_url>
+cd <repository_name> && pip install -e .
 
 # Deploy render server (separate conda env, CUDA 11 required)
 conda env create -f render_server/environment.yml

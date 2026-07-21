@@ -17,7 +17,7 @@ Point-Goal 导航任务中，agent 接收局部坐标系下的目标坐标，需
 
 ## 前提条件
 
-- 已安装评测框架（`pip install abotn-bench`）
+- 已安装评测框架（`abotn-bench`）
 - 渲染服务已启动（见[快速上手](getting-started.md)）
 - 已下载 ABotN-PointBench 数据
 - Python 3.8+，并安装 NumPy、SciPy、Pillow、tqdm 和 PyYAML

@@ -30,7 +30,7 @@ POI-Goal 导航任务中，agent 接收 POI 名称（如"星巴克"），需通�
 
 ## 前提条件
 
-- 已安装评测框架（`pip install abotn-bench`）
+- 已安装评测框架（`abotn-bench`）
 - 渲染服务已用 `scripts/start_POIGoal_render_server.sh` 启动（`RENDER_SCALE=1.5`）
 - 已下载 ABotN-POIBench 数据
 
