@@ -1,1 +1,2 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
+# MP4 files are no longer tracked by Git LFS.
+# Large demo videos are hosted externally; smaller videos are stored as normal Git objects.

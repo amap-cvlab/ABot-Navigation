@@ -1932,10 +1932,10 @@
 
     <br>
     <div class="hero-video-wrapper">
-        <video id="intro-video" src="static/videos/城市级长程自主导航.mp4" muted autoplay playsinline loop></video>
+        <video id="intro-video-1" src="https://huggingface.co/datasets/mingchenlin2025/ABot-N1_videos/resolve/main/%E5%9F%8E%E5%B8%82%E7%BA%A7%E9%95%BF%E7%A8%8B%E8%87%AA%E4%B8%BB%E5%AF%BC%E8%88%AA.mp4" muted autoplay playsinline loop crossorigin="anonymous"></video>
     </div>
     <div class="hero-video-wrapper">
-        <video id="intro-video" src="static/videos/复杂长程任务执行.mp4" muted autoplay playsinline loop></video>
+        <video id="intro-video-2" src="https://huggingface.co/datasets/mingchenlin2025/ABot-N1_videos/resolve/main/%E5%A4%8D%E6%9D%82%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C.mp4" muted autoplay playsinline loop crossorigin="anonymous"></video>
     </div>
     <div class="hero-image-wrapper">
         <img src="static/images/D8A9E619-430E-4E25-87ED-60E7CF68A153.png" alt="ABot-N1 Overview" loading="lazy">
@@ -2830,6 +2830,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         // If autoplay is blocked, dismiss immediately
         dismissSplash();
     });
+})();
+
+// ============================================
+// HERO VIDEOS - ensure autoplay + intersection playback
+// ============================================
+(function() {
+    const videos = document.querySelectorAll('.hero-video-wrapper video');
+    if (!videos.length) return;
+
+    function tryPlay(video) {
+        if (video.paused) {
+            video.play().catch(() => {
+                // Autoplay blocked; will remain as static poster frame
+            });
+        }
+    }
+
+    // Initial attempt after splash overlay is gone
+    setTimeout(() => {
+        videos.forEach(tryPlay);
+    }, 1000);
+
+    // Play when each video enters the viewport
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tryPlay(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        videos.forEach(video => observer.observe(video));
+    } else {
+        videos.forEach(tryPlay);
+    }
 })();
 </script>
 
