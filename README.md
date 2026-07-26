@@ -184,18 +184,6 @@ ABot-N0 achieves **new SOTA** on 7 benchmarks:
 - **BridgeNav** (POI-Goal)
 - **EVT-Bench** (Person-Following)
 
-## 📅 Release Plan
-
-We are committed to progressively open-sourcing resources to support the research community:
-
-| Phase | Content | Status |
-|:---:|:---|:---:|
-| Phase 1 | Technical Report | ✅ Released |
-| Phase 2 | Data             | 🔜 Coming Soon |
-| Phase 3 | Code             | 🔜 Coming Soon |
-
-> **⚠️ Note on Data Release**: Due to privacy and security concerns associated with certain data, we will conduct thorough data cleaning and de-identification before releasing a compliant version for community research use. We prioritize data compliance over release speed — thank you for your patience and understanding.
-
 ## 📄 Citation
 
 If you find this work useful, please consider citing:
