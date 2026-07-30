@@ -694,9 +694,9 @@ if __name__ == "__main__":
                         help="使用的GPU列表，用逗号分隔，如 '0,1,2'")
     parser.add_argument("--max_scenes_per_gpu", type=int, default=10,
                         help="每个GPU最大加载场景数")
-    parser.add_argument("--preload_scenes", type=str, default="cross1",
+    parser.add_argument("--preload_scenes", type=str, default="",
                         #"0801_840108,0802_840243,0803_840265,0804_840284,0805_840440,0806_840803,0807_841163,0808_841200,0809_841211,0810_841216",
-                        #"cross1",
+                        #"park2,cross_2512_1,20260316153248,cross_2512_12,cross3,20260212160022,park1,cross1,cross2,20260318lvdisoho,20260317150652,20260227170203,20260319120452,20260212163520,20260227165628",
                         help="启动时预加载的场景ID列表，用逗号分隔")
     parser.add_argument("--render_scale", type=float, default=1.5,
                         help="渲染超采样倍率，1.0=关闭")
