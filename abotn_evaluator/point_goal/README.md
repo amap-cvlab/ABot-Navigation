@@ -36,7 +36,7 @@ Defined in `agent_interface.py` → `Observation` dataclass.
 | Field | Type | Always? | Description |
 |-------|------|---------|-------------|
 | `images` | `Dict[str, ndarray(640,720,3)]` | ✅ Yes | Multi-view RGB images keyed by camera name. Default keys: `"left"`, `"front"`, `"right"`. Each value is a `uint8` array of shape `(640, 720, 3)`. |
-| `target_position` | `ndarray(2,)` float32 | ✅ Yes | Goal position in the agent's **local** coordinate frame as `[front, left]` in metres. Positive front = forward; positive left = leftward. |
+| `target_position` | `ndarray(2,)` float32 | ✅ Yes | Goal position in the agent's **local** coordinate frame as `[right, front]`. Positive front = forward; positive right = rightward. |
 | `position` | `ndarray(3,)` float64 | ✅ Yes | Agent position in **world** coordinates `[x, y, z]`. |
 | `rotation` | `ndarray(4,4)` float64 | ✅ Yes | 4×4 camera-to-world pose matrix (rigid-body transform). |
 | `heading` | `float` | ✅ Yes | Agent yaw angle in radians, computed as `arctan2(R[1,0], R[0,0])`. |
@@ -57,7 +57,7 @@ Defined in `agent_interface.py` → `WaypointPrediction` dataclass.
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `waypoint` | `ndarray` shape `(N, 2)` | ✅ Yes | — | Predicted next waypoint(s) in the agent's **local** coordinate frame as `[front, left]` in metres. Typically a single waypoint `(1, 2)`. |
+| `waypoint` | `ndarray` shape `(N, 2)` | ✅ Yes | — | Predicted next waypoint(s) in the agent's **local** coordinate frame as `[right, front]`. Typically a single waypoint `(1, 2)`. |
 | `arrive` | `bool` | No | `False` | Set to `True` when the agent believes it has reached the goal and wishes to stop the episode. The evaluator also checks `distance_to_goal < arrive_threshold` independently. |
 | `directions` | `ndarray` shape `(N, 2)` | No | `None` | Unit direction vector(s) associated with each predicted waypoint. Used by the evaluator to compute the agent's heading at the new pose. If `None`, directions are inferred from consecutive waypoints. |
 | `confidence` | `float` | No | `None` | A scalar confidence score in `[0, 1]` for the prediction. Not used by the evaluator but useful for logging and debugging. |
@@ -420,7 +420,7 @@ Only these two methods are called by the evaluator. The agent may use any intern
 | 字段 | 类型 | 始终提供？ | 说明 |
 |------|------|-----------|------|
 | `images` | `Dict[str, ndarray(640,720,3)]` | ✅ 是 | 多视角 RGB 图像，按相机名称索引。默认键：`"left"`、`"front"`、`"right"`。每个值为 `uint8` 数组，形状 `(640, 720, 3)`。 |
-| `target_position` | `ndarray(2,)` float32 | ✅ 是 | 目标在智能体**局部**坐标系中的位置，格式为 `[前方, 左方]`，单位：米。正前方 = 前进方向；正左方 = 左侧方向。 |
+| `target_position` | `ndarray(2,)` float32 | ✅ 是 | 目标在智能体**局部**坐标系中的位置，格式为 `[右方, 前方]`。正前方 = 前进方向；正右方 = 右侧方向。 |
 | `position` | `ndarray(3,)` float64 | ✅ 是 | 智能体在**世界**坐标系中的位置 `[x, y, z]`。 |
 | `rotation` | `ndarray(4,4)` float64 | ✅ 是 | 4×4 相机到世界的位姿矩阵（刚体变换）。 |
 | `heading` | `float` | ✅ 是 | 智能体偏航角（弧度），计算方式为 `arctan2(R[1,0], R[0,0])`。 |
@@ -441,7 +441,7 @@ Only these two methods are called by the evaluator. The agent may use any intern
 
 | 字段 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
-| `waypoint` | `ndarray` 形状 `(N, 2)` | ✅ 是 | — | 预测的下一个路点，位于智能体**局部**坐标系，格式 `[前方, 左方]`，单位：米。通常为单个路点 `(1, 2)`。 |
+| `waypoint` | `ndarray` 形状 `(N, 2)` | ✅ 是 | — | 预测的下一个路点，位于智能体**局部**坐标系，格式 `[右方, 前方]`。通常为单个路点 `(1, 2)`。 |
 | `arrive` | `bool` | 否 | `False` | 设为 `True` 表示智能体认为已到达目标，希望结束本轮。评估器也会独立检查 `distance_to_goal < arrive_threshold`。 |
 | `directions` | `ndarray` 形状 `(N, 2)` | 否 | `None` | 与每个预测路点关联的单位方向向量。评估器用其计算新位姿的朝向。若为 `None`，则从相邻路点推断方向。 |
 | `confidence` | `float` | 否 | `None` | 预测置信度分数，范围 `[0, 1]`。评估器不使用此字段，但可用于日志记录和调试。 |

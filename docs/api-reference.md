@@ -96,15 +96,15 @@ class YourPoiAgent(BasePoiGoalAgent):
 ### Agent-Local (used by `target_position` and `waypoint`)
 
 - Origin: agent's current position
-- Axis 0 (`front`): positive forward
-- Axis 1 (`left`): positive left
+- Axis 0 (`right`): positive right
+- Axis 1 (`front`): positive front
 
 ```
      front (+)
         |
         |
-  <-----o
-left (+) agent
+        o----->
+            right (+) agent
 ```
 
 Right-handed, units in metres.
@@ -119,7 +119,7 @@ world_point = rotation[:3, :3] @ local_point + rotation[:3, 3]
 
 You only need to ensure `waypoint` is in the local frame in metres -- the evaluator handles the conversion internally.
 
-> If your model outputs a different coordinate system (e.g., `[right, forward]` or polar `(r, theta)`), convert in `predict()`. See [Custom Agent Integration](custom-agents.md).
+> If your model outputs a different coordinate system (e.g., `[forward, left]` or polar `(r, theta)`), convert in `predict()`. See [Custom Agent Integration](custom-agents.md).
 
 ---
 

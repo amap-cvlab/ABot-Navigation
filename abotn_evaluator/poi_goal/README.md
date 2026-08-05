@@ -46,7 +46,7 @@ caching — is entirely up to the agent's `predict` implementation.
 | Field | Type | Always? | Description |
 |-------|------|---------|-------------|
 | `images` | `Dict[str, ndarray(640,720,3)]` | Yes | `"left"`, `"front"`, `"right"` RGB views |
-| `target_position` | `ndarray(2,)` | Yes | `[front, left]` metres in local frame (rough direction hint) |
+| `target_position` | `ndarray(2,)` | Yes | `[right, front]` metres in local frame (rough direction hint) |
 | `position` | `ndarray(3,)` | Yes | World `[x, y, z]` coordinates |
 | `rotation` | `ndarray(4,4)` | Yes | 4×4 camera-to-world pose matrix |
 | `heading` | `float` | Yes | Yaw angle in radians |
@@ -70,7 +70,7 @@ Identical to Point Goal:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `waypoint` | `ndarray(2,)` | `[front, left]` metres in local frame |
+| `waypoint` | `ndarray(2,)` | `[rigth, front]` metres in local frame |
 | `arrive` | `bool` | `True` → agent declares arrival; episode ends |
 | `directions` | `ndarray(N,2)` (optional) | Unit direction vector(s) |
 | `confidence` | `float` (optional) | Scalar confidence score in `[0, 1]` |
@@ -226,7 +226,7 @@ Agent 自行决定。
 | 字段 | 类型 | 是否必有 | 说明 |
 |------|------|---------|------|
 | `images` | `Dict[str, ndarray(640,720,3)]` | 是 | `"left"`、`"front"`、`"right"` RGB 图像 |
-| `target_position` | `ndarray(2,)` | 是 | 局部坐标系下 `[前方, 左方]` 米（仅为粗略方向提示） |
+| `target_position` | `ndarray(2,)` | 是 | 局部坐标系下 `[右方, 前方]` 米（仅为粗略方向提示） |
 | `position` | `ndarray(3,)` | 是 | 世界坐标 `[x, y, z]` |
 | `rotation` | `ndarray(4,4)` | 是 | 4×4 相机到世界的位姿矩阵 |
 | `heading` | `float` | 是 | 偏航角（弧度） |
@@ -250,7 +250,7 @@ Agent 自行决定。
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
-| `waypoint` | `ndarray(2,)` | 局部坐标系下 `[前方, 左方]` 米 |
+| `waypoint` | `ndarray(2,)` | 局部坐标系下 `[右方, 前方]` 米 |
 | `arrive` | `bool` | `True` 表示 Agent 判定已到达，episode 结束 |
 | `directions` | `ndarray(N,2)`（可选） | 单位方向向量 |
 | `confidence` | `float`（可选） | 置信度分数，范围 `[0, 1]` |

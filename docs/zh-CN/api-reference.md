@@ -96,15 +96,15 @@ class YourPoiAgent(BasePoiGoalAgent):
 ### Agent 局部坐标系（`target_position` 和 `waypoint` 使用）
 
 - 原点：Agent 当前位置
-- 第 0 维（`front`）：正前方为正
-- 第 1 维（`left`）：左侧为正
+- 第 0 维（`right`）：右侧为正
+- 第 1 维（`front`）：正前侧为正
 
 ```
      front (+)
         |
         |
-  <-----o
-left (+) agent
+        o----->
+            right (+) agent
 ```
 
 右手系，单位米。
@@ -119,7 +119,7 @@ world_point = rotation[:3, :3] @ local_point + rotation[:3, 3]
 
 只需确保 `waypoint` 在局部坐标系、单位米即可——评测器内部完成坐标转换。
 
-> 如模型输出的坐标系不同（如 `[right, forward]` 或极坐标 `(r, theta)`），在 `predict()` 中转换。见[自定义 Agent 接入](custom-agents.md)。
+> 如模型输出的坐标系不同（如 `[forward, left]` 或极坐标 `(r, theta)`），在 `predict()` 中转换。见[自定义 Agent 接入](custom-agents.md)。
 
 ---
 
